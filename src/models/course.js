@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 
 const courseSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Author'
-  },
+  author: String,
   tags: {
     type: Array,
     validate: {
@@ -21,7 +18,7 @@ const courseSchema = new mongoose.Schema({
     type: Number,
     required: function () { return this.isPublished; },
     min: 10,
-    max: 200
+    max: 10000
   },
   category: {
     type: String,

@@ -25,16 +25,32 @@ class commonServer {
 
   }
 
-  async findById() {
-
+  async findById(model, id) {
+    const result = await model.findById(id)
+    return result;
   }
 
-  async findOne() {
-
+  async findList(model) {
+    ({ query, skip, limit, sort, select } = query);
+    const result = await model
+      .find(query)
+      .skip(skip)
+      .limit(limit)
+      .sort(sort)
+      .select(select);
+    return result;
   }
 
-  async findList() {
-
+  async count(model, query) {
+    ({ query, skip, limit, sort, select } = query);
+    const result = await model
+      .find(query)
+      .skip(skip)
+      .limit(limit)
+      .sort(sort)
+      .select(select)
+      .count();
+    return result;
   }
 
   async updateById() {
@@ -49,8 +65,9 @@ class commonServer {
 
   }
 
-  async deleteById() {
-    
+  async deleteById(model, id) {
+    const result = await model.deleteOne({ _id: id });
+    return result;
   }
 
   async deleteOne() {

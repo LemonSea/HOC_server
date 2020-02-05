@@ -13,16 +13,22 @@ module.exports = (app) => {
 
   route.get('/',
     async (req, res, next) => {
-      // getProcess(req.query)
-
+      // http://localhost:8080/api/v1/courses?sort=%2Bname,-date&select=name,date,isPublished&offset=-1&limit=-2&name=xu&price=<=20
+      const { sort, select, limit, skip, count, rest } = getProcess(req.query)
+      debug(sort)
+      debug(select)
+      debug(limit)
+      debug(skip)
+      debug(count)
+      debug(rest)
       const record = await courseModel
-        .find(req.query)
-        .skip()
-        .limit()
-        .sort()
-        .select();
-        // .count();
-      debug(record);
+        .find(rest)
+        .skip(skip)
+        .limit(limit)
+        .sort(sort)
+        .select(select);
+      // .count();
+      // res.json(req.query);
       res.json(record);
     })
 
@@ -32,6 +38,7 @@ module.exports = (app) => {
         name: Joi.string().required(),
         author: Joi.string(),
         isPublished: Joi.boolean().required(),
+        price: Joi.number(),
         tags: Joi.array(),
         category: Joi.string().required()
       }),

@@ -13,6 +13,7 @@
     "dev": "set DEBUG=app:* && nodemon src/app.js"
   },
   "dependencies": {
+    "@hapi/joi": "^17.1.0",
     "body-parser": "^1.19.0",
     "celebrate": "^11.0.1",
     "cors": "^2.8.5",
