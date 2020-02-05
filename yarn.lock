@@ -1300,6 +1300,11 @@ type-is@~1.6.17, type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
+typedi@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.npm.taobao.org/typedi/download/typedi-0.8.0.tgz#d8e203bd1d41a96e2b0a5c6295147d74b2b2d03e"
+  integrity sha1-2OIDvR1BqW4rClxilRR9dLKy0D4=
+
 undefsafe@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npm.taobao.org/undefsafe/download/undefsafe-2.0.2.tgz#225f6b9e0337663e0d8e7cfd686fc2836ccace76"

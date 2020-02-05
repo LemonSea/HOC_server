@@ -1,7 +1,8 @@
 const route = require('express').Router();
 const debug = require('debug')('app:route');
+const { celebrate, Joi, errors, Segments } = require('celebrate');
 
-const courseModel = require('../../models/course');
+const { createCourse } = require('../../controllers/courseController');
 
 module.exports = (app) => {
 
@@ -16,10 +17,20 @@ module.exports = (app) => {
     })
   })
 
-  route.post('/', (req, res, next) => {
-    debug(req.body);
-    const result = courseModel.create(req.body)
-    res.json(result)
-  })
- 
+  route.post('/',
+    celebrate({
+      [Segments.BODY]: Joi.object().keys({
+        name: Joi.string().required(),
+        author: Joi.string(),
+        isPublished: Joi.boolean().required(),
+        tags: Joi.array(),
+        category: Joi.string().required()
+      }),
+    }),
+    async (req, res, next) => {
+      const result = await createCourse(req.body);
+      res.json(result)
+    })
+
+    app.use(errors());
 }
