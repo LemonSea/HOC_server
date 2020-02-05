@@ -22,4 +22,11 @@ module.exports = {
    * MongoDB connect URL
    */
   databaseURL: process.env.MONGODB_URI,
+
+  /**
+   * API configs
+   */
+  api: {
+    prefix: '/api',
+  },
 }
