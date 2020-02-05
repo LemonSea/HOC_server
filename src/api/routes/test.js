@@ -9,7 +9,7 @@ const courseModel = require('../../models/course');
 
 module.exports = (app) => {
 
-  app.use('/courses', route);
+  app.use('/test', route);
 
   route.post('/',
     celebrate({
@@ -36,7 +36,16 @@ module.exports = (app) => {
       try {
         // http://localhost:8080/api/v1/courses?sort=%2Bname,-date&select=name,date,isPublished&offset=-1&limit=-2&name=xu&price=<=20
         const query = processGet(req.query);
-        const result = await courseController.findCourse(query);
+        // const result = await courseController.findCourse(query);
+        debug(query)
+        const result = await courseModel
+          .find({})
+          .skip(0)
+          .limit(0)
+          .sort({})
+          .select({})
+          .count();
+        debug(result)
         res.status(200).json(result);
       } catch (e) {
         throw e;

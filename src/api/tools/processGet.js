@@ -50,6 +50,7 @@ function selectProcess(data) {
 }
 
 function limitProcess(data) {
+  if (data === null) return parseInt(0);
   return parseInt(data);
 }
 

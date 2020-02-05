@@ -25,7 +25,58 @@ async function findCourse(query) {
   }
 }
 
+async function findCourseById(id) {
+  try {
+    const result = await courseServiceInstance.findById(courseModel, id);
+    return result;
+  } catch (ex) {
+    throw ex
+  }
+}
+
+async function updateCourseById(id, doc) {
+  try {
+    const result = await courseServiceInstance.updateById(courseModel, id, doc);
+    return result;
+  } catch (ex) {
+    throw ex;
+  }
+}
+
+async function updateOneCourse(query, doc) {
+  try{
+    const result = await courseServiceInstance.updateOne(courseModel, query, doc);
+    return result;
+  } catch (ex) {
+    throw ex;
+  }
+}
+
+async function deleteCourseById(id) {
+  try {
+    const result = await courseServiceInstance.deleteById(courseModel, id);
+    return result;
+  } catch (ex) {
+    throw ex
+  }
+}
+
+async function deleteOneCourse(query) {
+  try{
+    const result = await courseServiceInstance.deleteOne(courseModel, query);
+    return result;
+  } catch (ex) {
+    throw ex;
+  }
+}
+
+
 module.exports = {
   createCourse,
-  findCourse
+  findCourseById,
+  findCourse,
+  updateCourseById,
+  updateOneCourse,
+  deleteCourseById,
+  deleteOneCourse
 }
