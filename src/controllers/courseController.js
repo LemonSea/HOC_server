@@ -9,7 +9,16 @@ const courseServiceInstance = Container.get(courseServer);
 
 async function createCourse(course) {
   try {
-    const result = await courseServiceInstance.createCourse(courseModel, course);
+    const result = await courseServiceInstance.createOne(courseModel, course);
+    return result;
+  } catch (ex) {
+    throw ex
+  }
+}
+
+async function findCourse(query) {
+  try {
+    const result = await courseServiceInstance.findList(courseModel, query);
     return result;
   } catch (ex) {
     throw ex
@@ -17,5 +26,6 @@ async function createCourse(course) {
 }
 
 module.exports = {
-  createCourse
+  createCourse,
+  findCourse
 }

@@ -65,7 +65,6 @@ function countProcess(count) {
 function restProcess(data) {
   // { price: { $gte: 10, $lte: 20 }}
   // {author: 'Mosh'}
-  console.log(data)
   let rest = {};
   let option = {};
   let arr = [];

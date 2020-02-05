@@ -30,10 +30,20 @@ class commonServer {
     return result;
   }
 
-  async findList(model) {
-    ({ query, skip, limit, sort, select } = query);
+  async findList(model, query) {
+    ({ sort, select, limit, skip, count, rest } = query);
+    if (this.count === true) {
+      const result = await model
+        .find(rest)
+        .skip(skip)
+        .limit(limit)
+        .sort(sort)
+        .select(select)
+        .count();
+      return result;
+    }
     const result = await model
-      .find(query)
+      .find(rest)
       .skip(skip)
       .limit(limit)
       .sort(sort)
