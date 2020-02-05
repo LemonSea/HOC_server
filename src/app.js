@@ -1,13 +1,13 @@
 const express = require('express');
 const config = require('./config');
 
-const expressLoader = require('./loaders/express');
+const loaders = require('./loaders');
 
 async function startServer() {
 
   const app = express();
   
-  expressLoader(app);
+  loaders(app);
 
   const port = config.port || 3000
   app.listen(port, (err) => {
