@@ -4,11 +4,12 @@ const { Container } = require("typedi");
 const courseModel = require('../models/course');
 const courseServer = require('../services/courseServer');
 
+// dependence injected
+const courseServiceInstance = Container.get(courseServer);
+
 async function createCourse(course) {
   try {
-    const courseServiceInstance = Container.get(courseServer);
     const result = await courseServiceInstance.createCourse(courseModel, course);
-    debug(result);
     return result;
   } catch (ex) {
     throw ex

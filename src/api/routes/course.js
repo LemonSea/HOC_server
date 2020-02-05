@@ -3,19 +3,28 @@ const debug = require('debug')('app:route');
 const { celebrate, Joi, errors, Segments } = require('celebrate');
 
 const { createCourse } = require('../../controllers/courseController');
+const getProcess = require('../tools/getProcess');
+
+const courseModel = require('../../models/course');
 
 module.exports = (app) => {
 
-  app.use('/course', route);
+  app.use('/courses', route);
 
-  route.get('/', (req, res, next) => {
-    res.status(200).json({
-      code: 0,
-      course: {
-        name: 'math'
-      }
+  route.get('/',
+    async (req, res, next) => {
+      // getProcess(req.query)
+
+      const record = await courseModel
+        .find(req.query)
+        .skip()
+        .limit()
+        .sort()
+        .select();
+        // .count();
+      debug(record);
+      res.json(record);
     })
-  })
 
   route.post('/',
     celebrate({
@@ -29,8 +38,8 @@ module.exports = (app) => {
     }),
     async (req, res, next) => {
       const result = await createCourse(req.body);
-      res.json(result)
+      res.status(201).json(result)
     })
 
-    app.use(errors());
+  app.use(errors());
 }

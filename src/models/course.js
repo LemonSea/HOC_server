@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 
 const courseSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  author: String,
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Author'
+  },
   tags: {
     type: Array,
     validate: {
