@@ -70,6 +70,16 @@ async function deleteOneCourse(query) {
   }
 }
 
+async function deleteManyCourse(query) {
+  try{
+    debug(query)
+    const result = await courseServiceInstance.deleteMany(courseModel, query);
+    return result;
+  } catch (ex) {
+    throw ex;
+  }
+}
+
 
 module.exports = {
   createCourse,
@@ -78,5 +88,6 @@ module.exports = {
   updateCourseById,
   updateOneCourse,
   deleteCourseById,
-  deleteOneCourse
+  deleteOneCourse,
+  deleteManyCourse
 }

@@ -164,8 +164,15 @@ class commonServer {
     }
   }
 
-  async deleteList() {
-
+  async deleteMany(model, query) {
+    try {
+      debug(query)
+      const result = await model.deleteMany(query);
+      debug(result)
+      return result;
+    } catch (ex) {
+      throw ex;
+    }
   }
 
 }
