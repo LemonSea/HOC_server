@@ -1,4 +1,4 @@
-const debug = require('debug')('app:server');
+const debug = require('debug')('app:commonServer');
 
 /**
  * other server will extends this server
@@ -30,9 +30,8 @@ class commonServer {
     return result;
   }
 
-  async findList(model, query) {
-    ({ sort, select, limit, skip, count, rest } = query);
-    if (this.count === true) {
+  async findList(model, { sort, select, limit, skip, count, rest }) {
+    if (count.count === true) {
       const result = await model
         .find(rest)
         .skip(skip)

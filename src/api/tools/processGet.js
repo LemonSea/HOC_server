@@ -1,6 +1,6 @@
-const debug = require('debug');
+const debug = require('debug')('app:processGet');
 
-function getProcess(query) {
+function processGet(query) {
   ({ sort=null, select=null, offset=null, limit=null, count=false, ...rest } = query);
 
   const sortObj = sortProcess(sort);
@@ -53,9 +53,10 @@ function limitProcess(data) {
   return parseInt(data);
 }
 
-function skipProcess(pageNumber, pageSize) {
-  if (parseInt(pageNumber) <= 0) return parseInt(0);
-  return skip = (parseInt(pageNumber) - 1) * parseInt(pageSize);
+function skipProcess(offset, limit) {
+  if (offset === null) return parseInt(0);
+  if (parseInt(offset) <= 0) return parseInt(0);
+  return skip = (parseInt(offset) - 1) * parseInt(limit);
 }
 
 function countProcess(count) {
@@ -111,4 +112,4 @@ function operatorMatching(arr, option) {
   }
 }
 
-module.exports = getProcess;
+module.exports = processGet;

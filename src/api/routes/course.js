@@ -3,7 +3,7 @@ const debug = require('debug')('app:route');
 const { celebrate, Joi, errors, Segments } = require('celebrate');
 
 const courseController = require('../../controllers/courseController');
-const getProcess = require('../tools/getProcess');
+const processGet = require('../tools/processGet');
 
 const courseModel = require('../../models/course');
 
@@ -15,7 +15,8 @@ module.exports = (app) => {
     async (req, res, next) => {
       // http://localhost:8080/api/v1/courses?sort=%2Bname,-date&select=name,date,isPublished&offset=-1&limit=-2&name=xu&price=<=20
       // const { sort, select, limit, skip, count, rest } = getProcess(req.query)
-      const query = getProcess(req.query);
+      const query = processGet(req.query);
+      // debug(query)
       // const record = await courseModel
       //   .find(rest)
       //   .skip(skip)
