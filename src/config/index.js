@@ -29,4 +29,9 @@ module.exports = {
   api: {
     prefix: '/api/v1',
   },
+
+  /**
+ * Your secret sauce
+ */
+  jwtSecret: process.env.JWT_SECRET,
 }

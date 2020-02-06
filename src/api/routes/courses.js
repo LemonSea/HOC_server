@@ -4,8 +4,9 @@ const debug = require('debug')('app:route');
 const Joi = require('@hapi/joi');
 
 const courseController = require('../../controllers/courseController');
-const processGet = require('../tools/processGet');
+const processGet = require('../../tools/processGet');
 const { createValidate } = require('../../validations/course');
+const isAuth = require('../../middlewares/isAuth');
 
 const courseModel = require('../../models/course');
 
@@ -13,17 +14,7 @@ module.exports = (app) => {
 
   app.use('/courses', route);
 
-  route.post('/',
-    // celebrate({
-    //   [Segments.BODY]: Joi.object().keys({
-    //     name: Joi.string().required(),
-    //     author: Joi.string(),
-    //     isPublished: Joi.boolean().required(),
-    //     price: Joi.number(),
-    //     tags: Joi.array(),
-    //     category: Joi.string().required()
-    //   }),
-    // }),
+  route.post('/', isAuth,
     async (req, res, next) => {
       try {
         const { error } = createValidate(req.body);

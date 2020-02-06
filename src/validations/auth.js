@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi');
 
-function logUpValidate(data) {
+function signUpValidate(data) {
   const schema = Joi.object({
     name: Joi.string().min(5).max(50).required(),
     password: Joi.string().required(),
@@ -9,7 +9,7 @@ function logUpValidate(data) {
   return schema.validate(data)
 }
 
-function authValidate(data) {
+function signInValidate(data) {
   const schema = Joi.object({
     password: Joi.string().required(),
     email: Joi.string().min(5).max(255).required().email()
@@ -21,6 +21,6 @@ function authValidate(data) {
 
 
 module.exports = {
-  logUpValidate,
-  authValidate
+  signUpValidate,
+  signInValidate
 }
