@@ -1,7 +1,8 @@
 const Router = require('express').Router;
 
-const course = require('./routes/course');
+const course = require('./routes/courses');
 const test = require('./routes/test');
+const user = require('./routes/users');
 
 // guaranteed to get dependencies
 module.exports = () => {
@@ -19,6 +20,7 @@ module.exports = () => {
 
   course(app);
   test(app);
+  user(app);
 
   return app
 }

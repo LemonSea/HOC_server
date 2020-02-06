@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const courseSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name:{
     type: String,
     minlength:3,
@@ -20,4 +20,4 @@ const courseSchema = new mongoose.Schema({
 });
 
 // 直接导出模型构造函数
-module.exports = mongoose.model('course', courseSchema);
+module.exports = mongoose.model('user', userSchema);

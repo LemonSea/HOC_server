@@ -48,7 +48,7 @@ class commonServer {
    * @param {model} model 文档模型
    * @param {object} param1 查询参数
    */
-  async findList(model, { sort, select, limit, skip, count, rest }) {
+  async findList(model, { sort = {}, select = {}, limit = 0, skip = 0, count = false, rest = {} }) {
     try {
       if (count.count === true) {
         const result = await model

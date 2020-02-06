@@ -5,7 +5,7 @@ const Joi = require('@hapi/joi');
 
 const courseController = require('../../controllers/courseController');
 const processGet = require('../tools/processGet');
-const { createValidate } = require('../../interfaces/ICourse');
+const { createValidate } = require('../../validations/course');
 
 const courseModel = require('../../models/course');
 
