@@ -1,7 +1,6 @@
 const Router = require('express').Router;
 
 const course = require('./routes/courses');
-const test = require('./routes/test');
 const user = require('./routes/users');
 const auth = require('./routes/auth');
 
@@ -20,7 +19,6 @@ module.exports = () => {
   // });
 
   course(app);
-  test(app);
   user(app);
   auth(app);
 

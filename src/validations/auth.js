@@ -18,8 +18,6 @@ function signInValidate(data) {
   return schema.validate(data)
 }
 
-
-
 module.exports = {
   signUpValidate,
   signInValidate

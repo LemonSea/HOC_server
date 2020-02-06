@@ -8,7 +8,7 @@ const envFound = dotenv.config();
 
 if (!envFound) {
   // This error should crash whole process
-  throw new Error("⚠️  Couldn't find .env file  ⚠️");
+  throw new Error("Couldn't find .env file");
 }
 
 module.exports = {
@@ -34,4 +34,11 @@ module.exports = {
  * Your secret sauce
  */
   jwtSecret: process.env.JWT_SECRET,
+
+  /**
+   * Used by winston logger
+   */
+  logs: {
+    level: process.env.LOG_LEVEL || 'silly',
+  },
 }
