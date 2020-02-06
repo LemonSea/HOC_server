@@ -41,6 +41,7 @@ module.exports = (app) => {
 
         const { record, token } = result;
         res.status(200).header('x-auth-token', token).json(record)
+        // res.status(200).json(token)
       } catch (e) {
         throw e;
       }

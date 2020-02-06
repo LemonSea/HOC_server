@@ -11,7 +11,7 @@ const userServiceInstance = Container.get(userServer);
 
 async function getMe(id) {
   const record = await userModel.findById(id);
-  const user = _.pick(record, ['_id', 'name', 'email']);
+  const user = _.pick(record, ['_id', 'name', 'email', 'idAdmin']);
   return user;
 }
 

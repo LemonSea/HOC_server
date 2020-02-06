@@ -7,6 +7,7 @@ const courseController = require('../../controllers/courseController');
 const processGet = require('../../tools/processGet');
 const { createValidate } = require('../../validations/course');
 const isAuth = require('../../middlewares/isAuth');
+const isAdmin = require('../../middlewares/isAdmin');
 
 const courseModel = require('../../models/course');
 
@@ -90,7 +91,7 @@ module.exports = (app) => {
     }
   )
 
-  route.delete('/:id',
+  route.delete('/:id', [isAuth, isAdmin],
   async (req, res, next) => {
     try {
       const id = req.params.id;
