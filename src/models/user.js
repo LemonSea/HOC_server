@@ -33,7 +33,7 @@ userSchema.methods.generateAuthToken = function () {
   const deadTime = Math.floor(Date.now() / 1000) + (60 * 60);
   const token = Jwt.sign(
     {
-      id: this._id,
+      _id: this._id,
       name: this.name,
       email: this.email,
       isAdmin: this.isAdmin,

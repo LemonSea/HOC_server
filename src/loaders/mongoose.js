@@ -6,7 +6,8 @@ const debug = require('debug')('app:db')
 
 module.exports = async () => {
   try {
-    const connection = await mongoose.connect(config.databaseURL, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
+    let dbUrl = (process.env.NODE_ENV === 'test') ? config.databaseTestURL : config.databaseURL;
+    const connection = await mongoose.connect(dbUrl, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
     logger.info('Success to connect MongoDB!')
     return connection.connection.db;
   } catch (e) {

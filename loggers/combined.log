@@ -11,3 +11,156 @@
 {"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 00:59:42"}
 {"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 00:59:55"}
 {"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 01:00:09"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:21:13"}
+{"service":"user-service","level":"error","message":"Error: Something failed miserably!\n    at startServer (I:\\Program\\graduation-design\\Node-Server-Core\\code\\src\\app.js:13:28)\n    at Object.<anonymous> (I:\\Program\\graduation-design\\Node-Server-Core\\code\\src\\app.js:32:1)\n    at Module._compile (internal/modules/cjs/loader.js:955:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)\n    at Module.load (internal/modules/cjs/loader.js:811:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:723:14)\n    at Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)\n    at internal/main/run_main_module.js:17:11 {\n  [stack]: 'Error: Something failed miserably!\\n' +\n    '    at startServer (I:\\\\Program\\\\graduation-design\\\\Node-Server-Core\\\\code\\\\src\\\\app.js:13:28)\\n' +\n    '    at Object.<anonymous> (I:\\\\Program\\\\graduation-design\\\\Node-Server-Core\\\\code\\\\src\\\\app.js:32:1)\\n' +\n    '    at Module._compile (internal/modules/cjs/loader.js:955:30)\\n' +\n    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)\\n' +\n    '    at Module.load (internal/modules/cjs/loader.js:811:32)\\n' +\n    '    at Function.Module._load (internal/modules/cjs/loader.js:723:14)\\n' +\n    '    at Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)\\n' +\n    '    at internal/main/run_main_module.js:17:11',\n  [message]: 'Something failed miserably!'\n}","timestamp":"2020-02-07 12:21:13"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:21:14"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:21:40"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:21:41"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:22:09"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:22:09"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:24:23"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:24:24"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:24:48"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:24:48"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:25:05"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:25:05"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:26:09"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:26:09"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:26:54"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:26:54"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:27:12"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:27:12"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:28:23"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:28:23"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:29:28"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:29:28"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:30:23"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:30:23"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:30:57"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:30:57"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:32:26"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:32:26"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 12:32:55"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 12:32:56"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 20:56:50"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 20:56:51"}
+{"service":"user-service","level":"error","message":"Error: Route error\n    at I:\\Program\\graduation-design\\Node-Server-Core\\code\\src\\api\\routes\\auth.js:47:15 {\n  [stack]: 'Error: Route error\\n' +\n    '    at I:\\\\Program\\\\graduation-design\\\\Node-Server-Core\\\\code\\\\src\\\\api\\\\routes\\\\auth.js:47:15',\n  [message]: 'Route error'\n}","timestamp":"2020-02-07 20:57:03"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 20:57:17"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 20:57:17"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 20:58:09"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 20:58:09"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 20:59:41"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 20:59:41"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 20:59:52"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 20:59:52"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:00:11"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:00:11"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:01:20"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:01:20"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:01:30"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:02:48"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:02:48"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:02:58"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:02:58"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:03:35"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:03:35"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:03:43"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:03:43"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:04:50"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:04:50"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:06:04"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:06:04"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:06:13"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:06:52"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:06:52"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:07:01"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:07:27"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:07:27"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:09:00"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:09:00"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:09:48"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:09:48"}
+{"message":"\n      ################################################\n      🛡️  Server listening on port: 8080 🛡️ \n      ################################################\n    ","level":"info","service":"user-service","timestamp":"2020-02-07 21:11:49"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:11:50"}
+{"message":"Server listening on port: 8080","level":"info","service":"user-service","timestamp":"2020-02-07 21:13:07"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:13:07"}
+{"message":"Server listening on port: 8080","level":"info","service":"user-service","timestamp":"2020-02-07 21:14:11"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:14:12"}
+{"message":"Server listening on port: 8080","level":"info","service":"user-service","timestamp":"2020-02-07 21:15:02"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:15:02"}
+{"message":"Server listening on port: 8080","level":"info","service":"user-service","timestamp":"2020-02-07 21:15:53"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:15:53"}
+{"message":"Server listening on port: 8080","level":"info","service":"user-service","timestamp":"2020-02-07 21:16:05"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:16:06"}
+{"message":"Server listening on port: 8080","level":"info","service":"user-service","timestamp":"2020-02-07 21:16:18"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:16:18"}
+{"message":"Server listening on port: 8080","level":"info","service":"user-service","timestamp":"2020-02-07 21:16:40"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:16:40"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:16:59"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:16:59"}
+{"message":"Server listening on port: 8080","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:08"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:08"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:18"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:18"}
+{"message":"Server listening on port: 8080","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:30"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:30"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:37"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:37"}
+{"message":"Server listening on port: 8080","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:44"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:45"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:54"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:17:54"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:28:01"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:28:01"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:30:23"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:30:23"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:31:02"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:31:02"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:32:53"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:32:53"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:33:10"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:33:10"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:34:04"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:34:04"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:34:33"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:34:33"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:34:51"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:34:51"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:35:21"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:35:21"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:35:57"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:35:57"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:36:19"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:36:19"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:39:13"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:39:14"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:43:42"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:43:42"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:44:07"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:44:07"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:44:23"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:44:23"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:46:41"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:46:41"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:47:14"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:47:14"}
+{"message":"Server listening on port: 8080","level":"info","service":"user-service","timestamp":"2020-02-07 21:47:44"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:47:44"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:48:05"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:48:05"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:49:28"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:49:28"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:49:44"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:49:44"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:50:38"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:51:02"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:51:20"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:51:20"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:51:55"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:51:55"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:54:12"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:54:12"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:54:27"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:54:27"}
+{"message":"Server listening on port: 7000","level":"info","service":"user-service","timestamp":"2020-02-07 21:54:45"}
+{"message":"Success to connect MongoDB!","level":"info","service":"user-service","timestamp":"2020-02-07 21:54:45"}

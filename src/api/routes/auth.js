@@ -42,9 +42,9 @@ module.exports = (app) => {
         if (!result) return res.status(400).json('Invalid email or password!')
 
         const { record, token } = result;
-        // res.status(200).header('x-auth-token', token).json(record)
+        res.status(200).header('x-auth-token', token).json(record)
         // res.status(200).json(token)
-        throw new Error('Route error');
+        // throw new Error('Route error');
       } catch (e) {
         logger.error('%o', e);
         next(e)

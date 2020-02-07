@@ -3,29 +3,23 @@ const winston = require('winston');
 require('winston-mongodb');
 const config = require('../config');
 
-const transports = [ 
-    //
-    // - Write to all logs with level `info` and below to `combined.log` 
-    // - Write all logs error (and below) to `error.log`.
-    //
-    new winston.transports.File({ filename: 'loggers/emerg.log', level: 'emerg' }),
-    new winston.transports.File({ filename: 'loggers/alert.log', level: 'alert' }),
-    new winston.transports.File({ filename: 'loggers/crit.log', level: 'crit' }),
-    new winston.transports.File({ filename: 'loggers/error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'loggers/warning.log', level: 'warning' }),
-    new winston.transports.File({ filename: 'loggers/notice.log', level: 'notice' }),
-    new winston.transports.File({ filename: 'loggers/combined.log' }),
-    // in production,save the log in DB
-    new winston.transports.MongoDB({
-      db: config.databaseURL
-    })
+const transports = [
+  //
+  // - Write to all logs with level `info` and below to `combined.log` 
+  // - Write all logs error (and below) to `error.log`.
+  //
+  new winston.transports.File({ filename: 'loggers/emerg.log', level: 'emerg' }),
+  new winston.transports.File({ filename: 'loggers/alert.log', level: 'alert' }),
+  new winston.transports.File({ filename: 'loggers/crit.log', level: 'crit' }),
+  new winston.transports.File({ filename: 'loggers/error.log', level: 'error' }),
+  new winston.transports.File({ filename: 'loggers/warning.log', level: 'warning' }),
+  new winston.transports.File({ filename: 'loggers/notice.log', level: 'notice' }),
+  // in production,save the log in DB
+  new winston.transports.MongoDB({
+    db: config.databaseURL
+  })
 ];
-if (process.env.NODE_ENV !== 'development') {
-  transports.push(
-    new winston.transports.File({ filename: 'loggers/info.log', level: 'info' }),
-    new winston.transports.Console()    
-  )
-} else {
+if (process.env.NODE_ENV === 'development') {
   transports.push(
     new winston.transports.Console({
       format: winston.format.combine(
@@ -33,6 +27,17 @@ if (process.env.NODE_ENV !== 'development') {
         winston.format.splat(),
       )
     })
+  )
+} else if (process.env.NODE_ENV === 'test') {
+  transports.push(
+    new winston.transports.Console()
+  )
+}
+else {
+  transports.push(
+    new winston.transports.File({ filename: 'loggers/info.log', level: 'info' }),
+    new winston.transports.File({ filename: 'loggers/combined.log' }),
+    new winston.transports.Console()
   )
 }
 

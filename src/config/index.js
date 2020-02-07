@@ -22,6 +22,7 @@ module.exports = {
    * MongoDB connect URL
    */
   databaseURL: process.env.MONGODB_URI,
+  databaseTestURL: process.env.MONGODB_TEST_URI,
 
   /**
    * API configs
