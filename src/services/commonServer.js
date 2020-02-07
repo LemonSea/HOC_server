@@ -33,9 +33,7 @@ class commonServer {
    */
   async findById(model, id) {
     try {
-
       const result = await model.findById(id)
-      if (!result) return {}
       return result;
     } catch (ex) {
       throw ex;

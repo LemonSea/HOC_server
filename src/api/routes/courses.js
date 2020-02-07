@@ -8,6 +8,8 @@ const processGet = require('../../tools/processGet');
 const { createValidate } = require('../../validations/course');
 const isAuth = require('../../middlewares/isAuth');
 const isAdmin = require('../../middlewares/isAdmin');
+const validateObjectId = require('../../middlewares/valideteObjectId');
+const logger = require('../../middlewares/logger');
 
 const courseModel = require('../../models/course');
 
@@ -19,7 +21,11 @@ module.exports = (app) => {
     async (req, res, next) => {
       try {
         const { error } = createValidate(req.body);
-        if(error) return res.status(400).send(error.details[0].message)
+        if(error){
+          logger.error('%o', error.details[0].message)
+          return res.status(400).send(error.details[0].message)
+        }
+          
 
         const result = await courseController.createCourse(req.body);
         res.status(201).json(result)
@@ -40,15 +46,18 @@ module.exports = (app) => {
       }
     })
 
-  route.get('/:id',
+  route.get('/:id', validateObjectId,
     async (req, res, next) => {
       try {
         const id = req.params.id;
-        debug(id)
+
         const result = await courseController.findCourseById(id);
+        if (!result) return res.status(404).json('Course is not found!')
+
         res.status(200).json(result);
       } catch (e) {
-        throw e;
+        logger.error('%o', e);
+        next(e)
       }
     }
   )
