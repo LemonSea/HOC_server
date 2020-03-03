@@ -43,13 +43,22 @@ module.exports = (app) => {
 
         const { record, token } = result;
         res.status(200).header('x-auth-token', token).json(record)
-        // res.status(200).json(token)
-        // throw new Error('Route error');
       } catch (e) {
         logger.error('%o', e);
         next(e)
       }
     })
+
+  route.get('/logout',
+    async (req, res, next) => {
+      try {
+        res.status(200).header('x-auth-token', '').json('you are logout!');
+      } catch (e) {
+        logger.error('%o', e);
+        next(e);
+      }
+    }
+  )
 }
 
 
