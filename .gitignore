@@ -2,8 +2,11 @@
 # dependencies
 /node_modules
 
+# loggers
+/loggers
+
 # Confidential File
-.env*
+#.env*
 
 # test code
 /test
