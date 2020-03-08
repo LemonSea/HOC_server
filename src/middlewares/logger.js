@@ -55,7 +55,7 @@ const logger = winston.createLogger({
   defaultMeta: { service: 'user-service' },
   transports,
   exceptionHandlers: [
-    new winston.transports.File({ filename: 'loggers/exceptions.log' })
+    // new winston.transports.File({ filename: 'loggers/exceptions.log' })
   ]
 });
 
