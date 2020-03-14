@@ -5,6 +5,7 @@ function signUpValidate(data) {
     name: Joi.string().min(5).max(50).required(),
     password: Joi.string().required(),
     email: Joi.string().min(5).max(255).required().email()
+    // email: Joi.string().min(5).max(255).required().email()
   })
   return schema.validate(data)
 }
@@ -12,7 +13,7 @@ function signUpValidate(data) {
 function signInValidate(data) {
   const schema = Joi.object({
     password: Joi.string().required(),
-    email: Joi.string().min(5).max(255).required().email()
+    account: Joi.string().min(5).max(255).required()
   })
 
   return schema.validate(data)

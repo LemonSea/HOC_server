@@ -41,7 +41,7 @@ async function SignIn(user) {
 
     debug(validPassword)
     return user = {
-      record: _.pick(record, ['_id', 'name', 'email']),
+      record: _.pick(record, ['_id', 'account']),
       token: token
     };
   } catch (ex) {

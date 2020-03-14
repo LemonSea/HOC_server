@@ -4,7 +4,7 @@ const config = require('../config');
 const debug = require('debug')('model:user');
 
 const userSchema = new mongoose.Schema({
-  name: {
+  account: {
     type: String,
     minlength: 3,
     maxlength: 255,
@@ -16,14 +16,42 @@ const userSchema = new mongoose.Schema({
     maxlength: 255,
     required: true
   },
-  email: {
+  avatar: {
     type: String,
-    unique: true
+  },
+  realName: {
+    type: String
+  },
+  IDCard: {
+    type: String
+  },
+  gender: {
+    type: Number
+  },
+  birthday: {
+    type: Date
+  },
+  createTime: { 
+    type: Date, 
+    default: Date.now 
+  },
+  email: {
+    type: String
+  },
+  phone: {
+    type: String
+  },
+  role: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'role'
   },
   isAdmin: {
     type: Boolean,
     default: false,
     required: true
+  },
+  idDelete: {
+    type: Boolean
   }
 });
 
@@ -34,8 +62,8 @@ userSchema.methods.generateAuthToken = function () {
   const token = Jwt.sign(
     {
       _id: this._id,
-      name: this.name,
-      email: this.email,
+      account: this.account,
+      // email: this.email,
       isAdmin: this.isAdmin,
       exp: deadTime,
     },
