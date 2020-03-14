@@ -8,7 +8,8 @@ class authServer extends commonServer {
   }
 
   async findUser(user) {
-    const result = await userModel.findOne({ email: user.email })
+    // debug(user)
+    const result = await userModel.findOne({ account: user.account })
     if(result) return result;
     return false;
   }
