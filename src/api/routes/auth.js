@@ -29,8 +29,7 @@ module.exports = (app) => {
       }
     })
 
-
-  route.post('/signin',
+  route.post('admin/login',
     async (req, res, next) => {
       try {
         const user = _.pick(req.body, ['account', 'password']);
@@ -38,20 +37,20 @@ module.exports = (app) => {
         const { error } = signInValidate(user);
         if (error) return res.status(400).json(
           {
-            "status" : 1,
+            "status": 1,
             "msg": error.details[0].message
           })
 
         const result = await authController.SignIn(user);
         if (!result) return res.status(400).json({
-          "status" : 1,
+          "status": 1,
           "msg": 'Invalid account or password!'
         })
 
         const { record, token } = result;
         res.status(200).header('x-auth-token', token).json(
           {
-            "status" : 0,
+            "status": 0,
             "data": record,
             "x-auth-token": token
           }

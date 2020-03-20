@@ -15,7 +15,51 @@ async function getMe(id) {
   return user;
 }
 
+// 管理员登录
+async function adminLogin(user) {
+  try {
+    let record = await userServiceInstance.validationAdmin(user);
+    if (!record) return false;
 
+    const validPassword = await bcrypt.compare(user.password, record.password);
+    if (!validPassword) {
+      return false;
+    }
+
+    const token =  record.generateAuthToken();
+    return user = {
+      record: _.pick(record, ['_id', 'account', 'isAdmin']),
+      token: token
+    };
+  } catch (ex) {
+    throw ex
+  }
+}
+
+// 添加管理员
+async function addAdmin(user) {
+  try {
+    // let result = await userServer.findUser(user);
+    let result = await userServiceInstance.validationAccount(user);
+    if (result) return false;
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+
+    const record = await userServiceInstance.createOne(userModel, user);
+    // const token =  record.generateAuthToken();
+    return user = {
+      record: _.pick(record, ['_id', 'account', 'isAdmin']),
+      // token: token
+    };
+  } catch (ex) {
+    throw ex
+  }
+}
 module.exports = {
-  getMe
+  getMe,
+
+  adminLogin,
+  addAdmin,
+  
 }
