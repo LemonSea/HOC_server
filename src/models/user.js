@@ -51,7 +51,9 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   idDelete: {
-    type: Boolean
+    type: Boolean,
+    default: false,
+    required: true
   }
 });
 

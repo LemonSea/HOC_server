@@ -43,7 +43,6 @@ module.exports = (app) => {
           })
 
         const result = await authController.SignIn(user);
-        // debug(result)
         if (!result) return res.status(400).json({
           "status" : 1,
           "msg": 'Invalid account or password!'

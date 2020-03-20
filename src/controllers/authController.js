@@ -32,7 +32,6 @@ async function SignIn(user) {
     let record = await authServiceInstance.findUser(user);
     if (!record) return false;
 
-    // debug(record)
     const validPassword = await bcrypt.compare(user.password, record.password);
     if (!validPassword) {
       return false;
