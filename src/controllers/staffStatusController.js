@@ -10,9 +10,9 @@ const staffStatusServer = require('../services/staffStatusServer');
 const staffStatusServiceInstance = Container.get(staffStatusServer);
 
 // 获取服务人员类型
-async function findList(query) {
+async function findList() {
   try {
-    const result = await staffStatusServiceInstance.findList(staffStatusModel, query);
+    const result = await staffStatusServiceInstance.findList(staffStatusModel, { isDelete: false });
     return result;
   } catch (ex) {
     throw ex
@@ -23,7 +23,7 @@ async function findList(query) {
 async function addStaffStatus(staffStatus) {
   try {
     const record = await staffStatusServiceInstance.createOne(staffStatusModel, staffStatus);
-    
+
     return result = {
       record: _.pick(record, ['_id', 'name', 'describe', 'creator', 'createTime', 'isDelete']),
     };

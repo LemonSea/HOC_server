@@ -4,6 +4,7 @@ const debug = require('debug')('app:isAuth');
 
 function isAuth(req, res, next) {
   const token = req.header('x-auth-token');
+  // debug(token)
   if (!token) return res.status(401).json('UnauthorizedError');
 
   try{
@@ -11,7 +12,9 @@ function isAuth(req, res, next) {
     req.currentUser = decoded;
     next()
   } catch(e) {
-    res.status(400).json('Invalid token');
+    res.status(400).json(
+      'Invalid token'
+    );
   }
 
 }

@@ -15,10 +15,10 @@ module.exports = (app) => {
   app.use('/staffStatus', route);
 
   route.get('/',
+    isAuth,
     async (req, res, next) => {
       try {
-        const query = processGet(req.query);
-        const result = await staffStatusController.findList(query);
+        const result = await staffStatusController.findList();
         res.status(200).json(
           {
             "status": 0,
