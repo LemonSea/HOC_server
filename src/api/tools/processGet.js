@@ -3,11 +3,17 @@ const debug = require('debug')('app:processGet');
 function processGet(query) {
   ({ sort=null, select=null, offset=null, limit=null, count=false, ...rest } = query);
 
+  // 排序
   const sortObj = sortProcess(sort);
+  // 选择
   const selectObj = selectProcess(select);
+  // 分页
   const skipNum = skipProcess(offset, limit);
+  // 限制
   const limitNum = limitProcess(limit);
+  // 总数
   const countObj = countProcess(count);
+  // 查询内容
   const restObj = restProcess(rest);
   return {
     sort: sortObj,
