@@ -12,7 +12,7 @@ const staffStatusServiceInstance = Container.get(staffStatusServer);
 // 获取服务人员类型
 async function findList() {
   try {
-    const result = await staffStatusServiceInstance.findList(staffStatusModel, { isDelete: false });
+    const result = await staffStatusServiceInstance.findList(staffStatusModel,{rest: { isDelete: false } });
     return result;
   } catch (ex) {
     throw ex
@@ -20,9 +20,15 @@ async function findList() {
 }
 
 // 添加服务人员类型
-async function addStaffStatus(staffStatus) {
+async function addStaffStatus(data) {
   try {
-    const record = await staffStatusServiceInstance.createOne(staffStatusModel, staffStatus);
+    const item = {
+      name: data.data.name,
+      describe: data.data.describe,
+      creator: data.data.creator
+    }
+    // debug(item)
+    const record = await staffStatusServiceInstance.createOne(staffStatusModel, item);
 
     return result = {
       record: _.pick(record, ['_id', 'name', 'describe', 'creator', 'createTime', 'isDelete']),
@@ -31,7 +37,33 @@ async function addStaffStatus(staffStatus) {
     throw ex
   }
 }
+// 更新服务人员类型
+async function updateStaffStatus(_id, data) {
+  try {
+    const record = await staffStatusServiceInstance.updateById(staffStatusModel,_id,  data);
+    // debug(record)
+    return result = {
+      record: _.pick(record, ['_id', 'name', 'describe', 'creator', 'createTime', 'isDelete']),
+    };
+  } catch (ex) {
+    throw ex
+  }
+}
+// 删除服务人员类型
+async function deleteStaffStatus(_id) {
+  try {
+    const record = await staffStatusServiceInstance.updateById(staffStatusModel, _id, {isDelete: true});
+    // debug(record)
+    return result = {
+      record: _.pick(record, ['_id', 'name', 'describe', 'creator', 'createTime', 'isDelete']),
+    };
+  } catch (ex) {
+    throw ex
+  }
+}
 module.exports = {
-  addStaffStatus,
   findList,
+  addStaffStatus,
+  updateStaffStatus,
+  deleteStaffStatus
 }

@@ -31,11 +31,10 @@ module.exports = (app) => {
     })
 
   route.post('/',
-    // isAuth,
+    isAuth,
     async (req, res, next) => {
       try {
-        const item = _.pick(req.body, ['name', 'describe', 'creator']);
-
+        const item = _.pick(req.body, ['data']);
         const result = await staffStatusController.addStaffStatus(item);
         debug(result)
         res.status(201).json(
@@ -49,5 +48,43 @@ module.exports = (app) => {
         next(e)
       }
     })
-  // app.use(errors());
+    
+    route.put('/',
+    isAuth,
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.body, ['_id', 'data']);
+        // debug(item)
+        const result = await staffStatusController.updateStaffStatus(item._id, item.data);
+        res.status(201).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    }
+  )
+
+  route.delete('/',
+  isAuth,
+  async (req, res, next) => {
+    try {
+      const id = req.body.id;
+      const result = await staffStatusController.deleteStaffStatus(id);
+      debug(result)
+      res.status(200).json(
+        {
+          "status": 0,
+          "data": result
+        }
+      )
+    } catch (e) {
+      logger.error('%o', e);
+      next(e)
+    }
+  })
 }
