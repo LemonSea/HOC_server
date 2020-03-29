@@ -12,7 +12,7 @@ const staffStatusServiceInstance = Container.get(staffStatusServer);
 // 获取服务人员类型
 async function findList() {
   try {
-    const result = await staffStatusServiceInstance.findList(staffStatusModel,{rest: { isDelete: false } });
+    const result = await staffStatusServiceInstance.findList({ isDelete: false });
     return result;
   } catch (ex) {
     throw ex

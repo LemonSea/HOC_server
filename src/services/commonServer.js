@@ -80,8 +80,8 @@ class commonServer {
    */
   async updateById(model, id, dec) {
     try {
-      debug(id);
-      debug(dec);
+      // debug(id);
+      // debug(dec);
       const result = await model.findByIdAndUpdate(id, {
         $set: dec
       }, { new: true })
@@ -137,9 +137,9 @@ class commonServer {
      */
   async deleteById(model, id) {
     try {
-      debug(id)
+      // debug(id)
       const result = await model.findByIdAndRemove(id);
-      debug(result)
+      // debug(result)
       return result;
     } catch (ex) {
       throw ex;
@@ -164,9 +164,9 @@ class commonServer {
 
   async deleteMany(model, query) {
     try {
-      debug(query)
+      // debug(query)
       const result = await model.deleteMany(query);
-      debug(result)
+      // debug(result)
       return result;
     } catch (ex) {
       throw ex;

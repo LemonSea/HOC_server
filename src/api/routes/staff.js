@@ -7,19 +7,37 @@ const isAuth = require('../../middlewares/isAuth');
 const isAdmin = require('../../middlewares/isAdmin');
 const processGet = require('../../tools/processGet');
 
-const staffStatusController = require('../../controllers/staffStatusController');
-const staffStatusModel = require('../../models/staffStatus');
+const staffController = require('../../controllers/staffController');
 
 
 module.exports = (app) => {
 
-  app.use('/staffStatus', route);
+  app.use('/staff', route);
 
-  route.get('/',
+  route.get('/admin/list',
     isAuth,
     async (req, res, next) => {
       try {
-        const result = await staffStatusController.findList();
+        debug(req.query)
+        const item = _.pick(req.query, ['pageNum', 'pageSize']);
+        const result = await staffController.findList(item);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        );
+      } catch (e) {
+        throw e;
+      }
+    })
+  route.get('/admin/searchList',
+    isAuth,
+    async (req, res, next) => {
+      try {
+        // debug(req.query)
+        const item = _.pick(req.query, ['pageNum', 'pageSize', 'searchType', 'searchName']);
+        const result = await staffController.findList(item);
         res.status(200).json(
           {
             "status": 0,
@@ -31,13 +49,13 @@ module.exports = (app) => {
       }
     })
 
-  route.post('/',
-    isAuth,
+  route.post('/admin/list',
+    // isAuth,
     async (req, res, next) => {
       try {
         const item = _.pick(req.body, ['data']);
-        const result = await staffStatusController.addStaffStatus(item);
-        debug(result)
+        const result = await staffController.addStaff(item.data);
+        // debug(result)
         res.status(201).json(
           {
             "status": 0,
@@ -56,7 +74,7 @@ module.exports = (app) => {
       try {
         const item = _.pick(req.body, ['_id', 'data']);
         // debug(item)
-        const result = await staffStatusController.updateStaffStatus(item._id, item.data);
+        const result = await staffController.updateStaffStatus(item._id, item.data);
         res.status(201).json(
           {
             "status": 0,
@@ -75,26 +93,7 @@ module.exports = (app) => {
   async (req, res, next) => {
     try {
       const id = req.body.id;
-      const result = await staffStatusController.deleteStaffStatus(id);
-      // debug(result)
-      res.status(200).json(
-        {
-          "status": 0,
-          "data": result
-        }
-      )
-    } catch (e) {
-      logger.error('%o', e);
-      next(e)
-    }
-  })
-  
-  route.get('/list',
-  async (req, res, next) => {
-    try {
-      const result = await staffStatusModel
-        .find()
-        .populate('creator')
+      const result = await staffController.deleteStaffStatus(id);
       // debug(result)
       res.status(200).json(
         {

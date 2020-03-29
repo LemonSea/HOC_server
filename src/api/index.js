@@ -5,6 +5,7 @@ const user = require('./routes/users');
 const auth = require('./routes/auth');
 const authorities = require('./routes/authorities');
 const staffStatus = require('./routes/staffStatus');
+const staff = require('./routes/staff');
 
 module.exports = () => {
   const app = Router();
@@ -14,6 +15,7 @@ module.exports = () => {
   auth(app);
   authorities(app);
   staffStatus(app);
+  staff(app);
 
   return app
 }

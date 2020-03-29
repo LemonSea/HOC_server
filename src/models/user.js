@@ -41,6 +41,10 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String
   },
+  company: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'company'
+  },
   role: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'role'
@@ -60,7 +64,7 @@ const userSchema = new mongoose.Schema({
 userSchema.methods.generateAuthToken = function () {
   // deadTime
   // one hour
-  const deadTime = Math.floor(Date.now() / 1000) + (60 * 60);
+  const deadTime = Math.floor(Date.now() / 1000) + (60 * 60 * 60);
   const token = Jwt.sign(
     {
       _id: this._id,
