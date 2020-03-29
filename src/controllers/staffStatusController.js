@@ -18,6 +18,16 @@ async function findList() {
     throw ex
   }
 }
+// 获取服务人员类型
+async function getStaffType() {
+  try {
+    const result = await staffStatusServiceInstance.getStaffType({ isDelete: false });
+    debug(result)
+    return result;
+  } catch (ex) {
+    throw ex
+  }
+}
 
 // 添加服务人员类型
 async function addStaffStatus(data) {
@@ -65,5 +75,6 @@ module.exports = {
   findList,
   addStaffStatus,
   updateStaffStatus,
-  deleteStaffStatus
+  deleteStaffStatus,
+  getStaffType
 }

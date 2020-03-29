@@ -30,6 +30,21 @@ module.exports = (app) => {
         throw e;
       }
     })
+  route.get('/type',
+    isAuth,
+    async (req, res, next) => {
+      try {
+        const result = await staffStatusController.getStaffType();
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        );
+      } catch (e) {
+        throw e;
+      }
+    })
 
   route.post('/',
     isAuth,
