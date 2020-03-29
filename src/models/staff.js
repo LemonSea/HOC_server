@@ -16,7 +16,7 @@ const staffSchema = new mongoose.Schema({
   status: {
     type: Number
   },
-  wordNumber: {
+  workNumber: {
     type: String
   },
   IDCard: {
@@ -48,6 +48,9 @@ const staffSchema = new mongoose.Schema({
   },
   badReviewOrder: {
     type: Number
+  },
+  introduction: {
+    type: String
   },
   createTime: {
     type: Date,

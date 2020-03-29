@@ -29,6 +29,19 @@ async function findList(item) {
   }
 }
 
+
+// 更新服务人员类型
+async function updateStatus(_id, status) {
+  try {
+    // debug(_id, status)
+    const record = await staffServiceInstance.updateById(staffModel, _id,  {status});
+    // debug(record)
+    return record;
+  } catch (ex) {
+    throw ex
+  }
+}
+
 // 添加服务人员类型
 async function addStaff(data) {
   try {
@@ -40,27 +53,12 @@ async function addStaff(data) {
     // }
     // debug(item)
     const record = await staffServiceInstance.createOne(staffModel, data);
-
     return record;
-    // return result = {
-    //   record: _.pick(record, ['_id', 'name', 'describe', 'creator', 'createTime', 'isDelete']),
-    // };
   } catch (ex) {
     throw ex
   }
 }
-// 更新服务人员类型
-async function updateStaffStatus(_id, data) {
-  try {
-    const record = await staffStatusServiceInstance.updateById(staffModel,_id,  data);
-    // debug(record)
-    return result = {
-      record: _.pick(record, ['_id', 'name', 'describe', 'creator', 'createTime', 'isDelete']),
-    };
-  } catch (ex) {
-    throw ex
-  }
-}
+
 // 删除服务人员类型
 async function deleteStaffStatus(_id) {
   try {
@@ -76,6 +74,7 @@ async function deleteStaffStatus(_id) {
 module.exports = {
   findList,
   addStaff,
+  updateStatus,
   // updateStaffStatus,
   // deleteStaffStatus
 }

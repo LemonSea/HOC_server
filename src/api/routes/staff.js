@@ -18,7 +18,7 @@ module.exports = (app) => {
     isAuth,
     async (req, res, next) => {
       try {
-        debug(req.query)
+        // debug(req.query)
         const item = _.pick(req.query, ['pageNum', 'pageSize']);
         const result = await staffController.findList(item);
         res.status(200).json(
@@ -56,6 +56,25 @@ module.exports = (app) => {
         const item = _.pick(req.body, ['data']);
         const result = await staffController.addStaff(item.data);
         // debug(result)
+        res.status(201).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    })
+
+  route.post('/admin/staffStatus',
+    isAuth,
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.body, ['_id', 'status']);
+        const result = await staffController.updateStatus(item._id, item.status);
+        // debug(item)
         res.status(201).json(
           {
             "status": 0,
