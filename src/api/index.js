@@ -13,6 +13,8 @@ const role = require('./routes/role');
 module.exports = () => {
   const app = Router();
 
+  upload(app);
+
   course(app);
   user(app);
   auth(app);

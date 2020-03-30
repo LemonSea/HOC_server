@@ -88,6 +88,26 @@ module.exports = (app) => {
       }
     }
   )
+  
+  route.put('/admin/staffType',
+  // isAuth,
+  async (req, res, next) => {
+    try {
+      const item = _.pick(req.body, ['_id', 'status']);
+      // debug(item)
+      const result = await staffController.updateStatus(item._id, item.status);
+      res.status(201).json(
+        {
+          "status": 0,
+          "data": item
+        }
+      )
+    } catch (e) {
+      logger.error('%o', e);
+      next(e)
+    }
+  }
+)
 
   route.delete('/admin',
   isAuth,

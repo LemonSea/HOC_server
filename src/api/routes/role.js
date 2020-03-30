@@ -13,7 +13,6 @@ const roleController = require('../../controllers/roleController');
 module.exports = (app) => {
 
   app.use('/role', route);
-  
 
   route.get('/admin/list',
     // isAuth,
@@ -69,4 +68,5 @@ module.exports = (app) => {
       }
     }
   )
+
 }

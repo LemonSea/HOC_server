@@ -19,19 +19,6 @@ module.exports = (app) => {
   app.use('/upload', route);
 
   route.post('/staff/pic', function (req, res) {
-    // try {
-    //   // debug(req.query)
-    //   const item = _.pick(req.query, ['pageNum', 'pageSize']);
-    //   const result = await staffController.findList(item);
-    //   res.status(200).json(
-    //     {
-    //       "status": 0,
-    //       "data": result
-    //     }
-    //   );
-    // } catch (e) {
-    //   throw e;
-    // }
 
     var form = new formidable.IncomingForm();
     form.uploadDir = '/tmp';   //文件保存在系统临时目录
