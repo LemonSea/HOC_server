@@ -31,6 +31,7 @@ module.exports = (app) => {
         throw e;
       }
     })
+    
   route.get('/admin/searchList',
     isAuth,
     async (req, res, next) => {
