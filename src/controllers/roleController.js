@@ -40,8 +40,21 @@ async function updateRole(_id, data) {
   }
 }
 
+
+// 删除服务人员类型
+async function deleteRole(_id) {
+  try {
+    const record = await roleServiceInstance.updateById(roleModel, _id, {isDelete: true});
+    // debug(record)
+    return record;
+  } catch (ex) {
+    throw ex
+  }
+}
+
 module.exports = {
   addRole,
   findList,
-  updateRole
+  updateRole,
+  deleteRole
 }

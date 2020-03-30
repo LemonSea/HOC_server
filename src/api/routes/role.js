@@ -49,12 +49,12 @@ module.exports = (app) => {
       }
     })
 
-    route.put('/admin',
+    route.put('/auth',
     // isAuth,
     async (req, res, next) => {
       try {
         const item = _.pick(req.body, ['_id', 'data']);
-        // debug(item)
+        debug(item)
         const result = await roleController.updateRole(item._id, item.data);
         res.status(201).json(
           {
@@ -68,5 +68,25 @@ module.exports = (app) => {
       }
     }
   )
+
+  route.delete('/',
+  isAuth,
+  async (req, res, next) => {
+    try {
+      const _id = req.body._id;
+      // debug(req.body)
+      const result = await roleController.deleteRole(_id);
+      debug(result)
+      res.status(200).json(
+        {
+          "status": 0,
+          "data": result
+        }
+      )
+    } catch (e) {
+      logger.error('%o', e);
+      next(e)
+    }
+  })
 
 }
