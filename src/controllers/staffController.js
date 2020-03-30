@@ -42,16 +42,22 @@ async function updateStatus(_id, status) {
   }
 }
 
-// 添加服务人员类型
+// 更新服务人员
+async function updateStaff(_id, data) {
+  try {
+    // debug(_id, data)
+    const record = await staffServiceInstance.updateById(staffModel, _id,  data);
+    // debug(record)
+    return record;
+  } catch (ex) {
+    throw ex
+  }
+}
+
+// 添加服务人员
 async function addStaff(data) {
   try {
     debug(data)
-    // const item = {
-    //   name: data.data.name,
-    //   describe: data.data.describe,
-    //   creator: data.data.creator
-    // }
-    // debug(item)
     const record = await staffServiceInstance.createOne(staffModel, data);
     return record;
   } catch (ex) {
@@ -60,13 +66,11 @@ async function addStaff(data) {
 }
 
 // 删除服务人员类型
-async function deleteStaffStatus(_id) {
+async function deleteStaff(_id) {
   try {
-    const record = await staffStatusServiceInstance.updateById(staffModel, _id, {isDelete: true});
+    const record = await staffServiceInstance.updateById(staffModel, _id, {isDelete: true});
     // debug(record)
-    return result = {
-      record: _.pick(record, ['_id', 'name', 'describe', 'creator', 'createTime', 'isDelete']),
-    };
+    return record;
   } catch (ex) {
     throw ex
   }
@@ -75,6 +79,6 @@ module.exports = {
   findList,
   addStaff,
   updateStatus,
-  // updateStaffStatus,
-  // deleteStaffStatus
+  updateStaff,
+  deleteStaff
 }

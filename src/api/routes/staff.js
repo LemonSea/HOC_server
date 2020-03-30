@@ -55,26 +55,7 @@ module.exports = (app) => {
       try {
         const item = _.pick(req.body, ['data']);
         const result = await staffController.addStaff(item.data);
-        // debug(result)
-        res.status(201).json(
-          {
-            "status": 0,
-            "data": result
-          }
-        )
-      } catch (e) {
-        logger.error('%o', e);
-        next(e)
-      }
-    })
-
-  route.post('/admin/staffStatus',
-    isAuth,
-    async (req, res, next) => {
-      try {
-        const item = _.pick(req.body, ['_id', 'status']);
-        const result = await staffController.updateStatus(item._id, item.status);
-        // debug(item)
+        debug(req.body)
         res.status(201).json(
           {
             "status": 0,
@@ -87,13 +68,13 @@ module.exports = (app) => {
       }
     })
     
-    route.put('/',
+    route.put('/admin',
     isAuth,
     async (req, res, next) => {
       try {
         const item = _.pick(req.body, ['_id', 'data']);
         // debug(item)
-        const result = await staffController.updateStaffStatus(item._id, item.data);
+        const result = await staffController.updateStaff(item._id, item.data);
         res.status(201).json(
           {
             "status": 0,
@@ -107,13 +88,13 @@ module.exports = (app) => {
     }
   )
 
-  route.delete('/',
+  route.delete('/admin',
   isAuth,
   async (req, res, next) => {
     try {
       const id = req.body.id;
-      const result = await staffController.deleteStaffStatus(id);
-      // debug(result)
+      const result = await staffController.deleteStaff(id);
+      debug(result)
       res.status(200).json(
         {
           "status": 0,

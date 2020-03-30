@@ -6,6 +6,10 @@ const staffSchema = new mongoose.Schema({
   name: {
     type: String
   },
+  staffStatus: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'staffStatus'
+  },
   company: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'company'
@@ -25,6 +29,9 @@ const staffSchema = new mongoose.Schema({
   avatar: {
     type: String
   },
+  imgs: {
+    type: Array
+  },
   gender: {
     type: Number
   },
@@ -32,7 +39,7 @@ const staffSchema = new mongoose.Schema({
     type: Number
   },
   inductionTime: {
-    type: Date
+    type: String
   },
   address: {
     type: String

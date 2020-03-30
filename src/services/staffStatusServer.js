@@ -21,7 +21,7 @@ class staffStatusServer extends commonServer {
   async getStaffType(rest) {
     const result = await StaffStatus
         .find(rest)
-        .select('name -_id')
+        .select('name _id')
     // debug(result)
     return result;
     if (result) return false;
