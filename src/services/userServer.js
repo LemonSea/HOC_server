@@ -1,12 +1,30 @@
 const debug = require('debug')('app:server');
-const userModel = require('../models/user');
 const commonServer = require('./commonServer');
 
-const Course = require('../models/course');
+const userModel = require('../models/user');
 
 class userServer extends commonServer {
   constructor() {
     super();
+  }
+
+  async findList(rest, pageSize, pageNum) {
+    const num = await userModel.find(rest).count();
+    const list = await userModel
+      .find()
+      // .populate('company', 'name')
+      .populate('role', 'name')
+      .skip((pageNum - 1) * pageSize)
+      .limit(pageSize).exec()
+      // debug(num)
+      // debug(rest)
+      // debug(list)
+    return {
+      num,
+      pageSize,
+      pageNum,
+      list
+    };
   }
 
   async validationEmile(user) {

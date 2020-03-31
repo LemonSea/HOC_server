@@ -14,6 +14,7 @@ module.exports = (app) => {
 
   app.use('/users', route);
 
+  // 获取当前账号信息
   route.get('/me', isAuth,
     async (req, res, next) => {
       const record = await userController.getMe(req.currentUser.id);
@@ -21,6 +22,7 @@ module.exports = (app) => {
     }
   )
 
+  // 管理员登录
   route.post('/admin/login',
     async (req, res, next) => {
       try {
@@ -53,6 +55,25 @@ module.exports = (app) => {
       }
     }
   )
+
+  // 获取用户列表
+  route.get('/admin/list',
+    isAuth,
+    async (req, res, next) => {
+      try {
+        // debug(req.query)
+        const item = _.pick(req.query, ['pageNum', 'pageSize']);
+        const result = await userController.findList(item);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        );
+      } catch (e) {
+        throw e;
+      }
+    })
 
   // 添加管理员
   route.post('/admin/user',
@@ -88,6 +109,27 @@ module.exports = (app) => {
       }
     }
   )
+
+  // 修改账号状态
+  route.put('/admin/status',
+  // isAuth,
+  async (req, res, next) => {
+    try {
+      const item = _.pick(req.body, ['_id', 'status']);
+      debug(item)
+      const result = await userController.updateStatus(item._id, item.status);
+      res.status(201).json(
+        {
+          "status": 0,
+          "data": result
+        }
+      )
+    } catch (e) {
+      logger.error('%o', e);
+      next(e)
+    }
+  }
+)
 
 }
 

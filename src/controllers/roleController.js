@@ -29,10 +29,10 @@ async function addRole(data) {
   }
 }
 
-async function updateRole(_id, data) {
+async function updateRole(_id, menu) {
   try {
-    debug(_id, data)
-    const record = await roleServiceInstance.updateById(roleModel, _id,  data);
+    debug(_id, menu)
+    const record = await roleServiceInstance.updateById(roleModel, _id,  {menu});
     debug(record)
     return record;
   } catch (ex) {

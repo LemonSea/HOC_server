@@ -1,4 +1,4 @@
-const debug = require('debug')('app:controller');
+const debug = require('debug')('app:controller-user');
 const { Container } = require("typedi");
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
@@ -13,6 +13,26 @@ async function getMe(id) {
   const record = await userModel.findById(id);
   const user = _.pick(record, ['_id', 'name', 'email', 'idAdmin']);
   return user;
+}
+
+// 获取服务人员类型
+async function findList(item) {
+  try {
+    const pageSize = parseInt(item.pageSize);
+    const pageNum = parseInt(item.pageNum);
+    const rest = { isDelete: false }
+    if(item.searchName) {
+      if(item.searchType === 'name'){
+        const reg = new RegExp(item.searchName, 'i') //不区分大小写
+        rest[item.searchType] = {$regex : reg}
+      }
+    }
+    // debug(item)
+    const result = await userServiceInstance.findList(rest, pageSize, pageNum);
+    return result;
+  } catch (ex) {
+    throw ex
+  }
 }
 
 // 管理员登录
@@ -56,10 +76,22 @@ async function addAdmin(user) {
     throw ex
   }
 }
+
+// 更新账号状态
+async function updateStatus(_id, status) {
+  try {
+    // debug(_id, status)
+    const record = await userServiceInstance.updateById(userModel, _id,  {status});
+    // debug(record)
+    return record;
+  } catch (ex) {
+    throw ex
+  }
+}
 module.exports = {
   getMe,
-
+  findList,
   adminLogin,
   addAdmin,
-  
+  updateStatus,
 }

@@ -53,10 +53,10 @@ module.exports = (app) => {
     // isAuth,
     async (req, res, next) => {
       try {
-        const item = _.pick(req.body, ['_id', 'data']);
-        debug(item)
-        const result = await roleController.updateRole(item._id, item.data);
-        res.status(201).json(
+        const item = _.pick(req.body, ['_id', 'menu']);
+        // debug(item)
+        const result = await roleController.updateRole(item._id, item.menu);
+        res.status(200).json(
           {
             "status": 0,
             "data": result

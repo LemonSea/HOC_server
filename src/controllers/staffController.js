@@ -9,7 +9,7 @@ const staffServer = require('../services/staffServer');
 // dependence injected
 const staffServiceInstance = Container.get(staffServer);
 
-// 获取服务人员类型
+// 获取服务人员
 async function findList(item) {
   try {
     const pageSize = parseInt(item.pageSize);

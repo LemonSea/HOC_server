@@ -49,12 +49,15 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'role'
   },
+  status: {
+    type: Number,
+  },
   isAdmin: {
     type: Boolean,
     default: false,
     required: true
   },
-  idDelete: {
+  isDelete: {
     type: Boolean,
     default: false,
     required: true
