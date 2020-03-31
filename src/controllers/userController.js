@@ -15,7 +15,7 @@ async function getMe(id) {
   return user;
 }
 
-// 获取服务人员类型
+// 获取用户列表
 async function findList(item) {
   try {
     const pageSize = parseInt(item.pageSize);
@@ -88,10 +88,36 @@ async function updateStatus(_id, status) {
     throw ex
   }
 }
+
+// 更新账号角色
+async function updateRole(_id, role) {
+  try {
+    debug(_id, role)
+    const record = await userServiceInstance.updateById(userModel, _id,  {role});
+    debug(record)
+    return record;
+  } catch (ex) {
+    throw ex
+  }
+}
+
+// 删除用户
+async function deleteById(_id) {
+  try {
+    const record = await userServiceInstance.updateById(userModel, _id, {isDelete: true});
+    debug(record)
+    return record;
+  } catch (ex) {
+    throw ex
+  }
+}
+
 module.exports = {
   getMe,
   findList,
   adminLogin,
   addAdmin,
   updateStatus,
+  updateRole,
+  deleteById,
 }

@@ -112,24 +112,64 @@ module.exports = (app) => {
 
   // 修改账号状态
   route.put('/admin/status',
-  // isAuth,
-  async (req, res, next) => {
-    try {
-      const item = _.pick(req.body, ['_id', 'status']);
-      debug(item)
-      const result = await userController.updateStatus(item._id, item.status);
-      res.status(201).json(
-        {
-          "status": 0,
-          "data": result
-        }
-      )
-    } catch (e) {
-      logger.error('%o', e);
-      next(e)
+    // isAuth,
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.body, ['_id', 'status']);
+        // debug(item)
+        const result = await userController.updateStatus(item._id, item.status);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
     }
-  }
-)
+  )
+  // 修改账号角色
+  route.put('/admin/role',
+    // isAuth,
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.body, ['_id', 'role']);
+        debug(item)
+        const result = await userController.updateRole(item._id, item.role);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    }
+  )
+
+  route.delete('/admin',
+    isAuth,
+    async (req, res, next) => {
+      try {
+        const _id = req.body._id;
+        debug(req.body)
+        const result = await userController.deleteById(_id);
+        debug(result)
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    })
 
 }
 

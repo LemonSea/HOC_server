@@ -41,7 +41,7 @@ async function updateRole(_id, menu) {
 }
 
 
-// 删除服务人员类型
+// 删除角色
 async function deleteRole(_id) {
   try {
     const record = await roleServiceInstance.updateById(roleModel, _id, {isDelete: true});

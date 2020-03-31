@@ -11,13 +11,13 @@ class userServer extends commonServer {
   async findList(rest, pageSize, pageNum) {
     const num = await userModel.find(rest).count();
     const list = await userModel
-      .find()
+      .find(rest)
       // .populate('company', 'name')
       .populate('role', 'name')
       .skip((pageNum - 1) * pageSize)
       .limit(pageSize).exec()
       // debug(num)
-      // debug(rest)
+      debug(rest)
       // debug(list)
     return {
       num,

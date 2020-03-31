@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Jwt = require('jsonwebtoken');
 const config = require('../config');
 const debug = require('debug')('model:user');
+const { randomNumBySix } = require('../tools/randomNum')
 
 const userSchema = new mongoose.Schema({
   account: {
@@ -18,6 +19,10 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
+  },
+  nickname: {
+    type: String,
+    default:"新用户" + randomNumBySix()
   },
   realName: {
     type: String
@@ -51,11 +56,15 @@ const userSchema = new mongoose.Schema({
   },
   status: {
     type: Number,
+    default: 0
   },
   isAdmin: {
     type: Boolean,
-    default: false,
-    required: true
+    default: false
+  },
+  isHead: {
+    type: Boolean,
+    default: false
   },
   isDelete: {
     type: Boolean,
