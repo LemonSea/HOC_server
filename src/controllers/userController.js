@@ -48,7 +48,8 @@ async function adminLogin(user) {
 
     const token =  record.generateAuthToken();
     return user = {
-      record: _.pick(record, ['_id', 'account', 'isAdmin']),
+      record,
+      // record: _.pick(record, ['_id', 'account', 'isAdmin']),
       token: token
     };
   } catch (ex) {

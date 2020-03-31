@@ -13,7 +13,7 @@ class userServer extends commonServer {
     const list = await userModel
       .find(rest)
       // .populate('company', 'name')
-      .populate('role', 'name')
+      .populate('role', 'name menu')
       .skip((pageNum - 1) * pageSize)
       .limit(pageSize).exec()
       // debug(num)
@@ -42,7 +42,9 @@ class userServer extends commonServer {
 
   async validationAdmin(user) {
     // debug(user)
-    const result = await userModel.findOne({ account: user.account, isAdmin: true })
+    const result = await userModel
+      .findOne({ account: user.account, isAdmin: true })
+      .populate('role', 'name menu')
     if (result) return result;
     return false;
   }
