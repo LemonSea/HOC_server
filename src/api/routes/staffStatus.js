@@ -30,6 +30,7 @@ module.exports = (app) => {
         throw e;
       }
     })
+
   route.get('/type',
     isAuth,
     async (req, res, next) => {
@@ -64,8 +65,8 @@ module.exports = (app) => {
         next(e)
       }
     })
-    
-    route.put('/',
+
+  route.put('/',
     isAuth,
     async (req, res, next) => {
       try {
@@ -86,40 +87,40 @@ module.exports = (app) => {
   )
 
   route.delete('/',
-  isAuth,
-  async (req, res, next) => {
-    try {
-      const id = req.body.id;
-      const result = await staffStatusController.deleteStaffStatus(id);
-      // debug(result)
-      res.status(200).json(
-        {
-          "status": 0,
-          "data": result
-        }
-      )
-    } catch (e) {
-      logger.error('%o', e);
-      next(e)
-    }
-  })
-  
+    isAuth,
+    async (req, res, next) => {
+      try {
+        const id = req.body.id;
+        const result = await staffStatusController.deleteStaffStatus(id);
+        // debug(result)
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    })
+
   route.get('/list',
-  async (req, res, next) => {
-    try {
-      const result = await staffStatusModel
-        .find()
-        .populate('creator')
-      // debug(result)
-      res.status(200).json(
-        {
-          "status": 0,
-          "data": result
-        }
-      )
-    } catch (e) {
-      logger.error('%o', e);
-      next(e)
-    }
-  })
+    async (req, res, next) => {
+      try {
+        const result = await staffStatusModel
+          .find()
+          .populate('creator')
+        // debug(result)
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    })
 }

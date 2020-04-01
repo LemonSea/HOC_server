@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   phone: {
-    type: String
+    type: Object
   },
   company: {
     type: mongoose.Schema.Types.ObjectId,
