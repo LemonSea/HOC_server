@@ -11,7 +11,7 @@ class companyServer extends commonServer {
     const list = await companyModel
       .find(rest)
       // .populate('company', 'name')
-      .populate('Officer', 'nickname account status')
+      .populate('Officer')
       .skip((pageNum - 1) * pageSize)
       .limit(pageSize).exec()
     // debug(num)

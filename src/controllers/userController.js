@@ -154,6 +154,5 @@ module.exports = {
   /**
    * client
    */
-  addHead,
-  findOfficerList
+  addHead
 }

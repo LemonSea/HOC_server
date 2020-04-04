@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    default: '/imgs/default/avatar/1585609047225.png'
+    default: 'imgs/default/avatar/1585969641412.png'
   },
   nickname: {
     type: String,

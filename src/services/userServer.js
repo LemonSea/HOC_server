@@ -43,7 +43,7 @@ class userServer extends commonServer {
   async validationAdmin(user) {
     // debug(user)
     const result = await userModel
-      .findOne({ account: user.account, isAdmin: true })
+      .findOne({ account: user.account, isAdmin: true, status: 1 })
       .populate('role', 'name menu')
     if (result) return result;
     return false;

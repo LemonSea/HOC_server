@@ -1,28 +1,48 @@
-const debug = require('debug')('app:controller');
+const debug = require('debug')('app:controller-staff');
 const { Container } = require("typedi");
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 
 const staffModel = require('../models/staff');
+const companyModel = require('../models/company');
 const staffServer = require('../services/staffServer');
+const commonServer = require('../services/commonServer');
 
 // dependence injected
 const staffServiceInstance = Container.get(staffServer);
+const companyServiceInstance = Container.get(commonServer);
 
 // 获取服务人员
 async function findList(item) {
   try {
     const pageSize = parseInt(item.pageSize);
     const pageNum = parseInt(item.pageNum);
-    const rest = { isDelete: false }
-    if(item.searchName) {
-      if(item.searchType === 'name'){
+    let rest = { isDelete: false }
+    if (item.searchName) {
+      if (item.searchType === 'name') {
         const reg = new RegExp(item.searchName, 'i') //不区分大小写
-        rest[item.searchType] = {$regex : reg}
+        rest[item.searchType] = { $regex: reg }
       }
     }
-    // debug(item)
+    
+    if (item.user !== '') {
+      debug(item)
+      // 获得对应用户的公司
+      const firmRest = { isDelete: false, Officer: item.user }
+      debug('firmRest', firmRest)
+      const company = await companyServiceInstance.findList(companyModel, firmRest);
+      debug('company', company)
+      const rest = { isDelete: false, company: company[0]._id }
+      debug('rest', rest)
+      const result = await staffServiceInstance.findList(rest, pageSize, pageNum);
+  
+      debug(result)
+      return result;
+    }
+
+    debug(item)
     const result = await staffServiceInstance.findList(rest, pageSize, pageNum);
+
     return result;
   } catch (ex) {
     throw ex
@@ -34,7 +54,7 @@ async function findList(item) {
 async function updateStatus(_id, status) {
   try {
     // debug(_id, status)
-    const record = await staffServiceInstance.updateById(staffModel, _id,  {status});
+    const record = await staffServiceInstance.updateById(staffModel, _id, { status });
     // debug(record)
     return record;
   } catch (ex) {
@@ -46,7 +66,7 @@ async function updateStatus(_id, status) {
 async function updateStaff(_id, data) {
   try {
     // debug(_id, data)
-    const record = await staffServiceInstance.updateById(staffModel, _id,  data);
+    const record = await staffServiceInstance.updateById(staffModel, _id, data);
     // debug(record)
     return record;
   } catch (ex) {
@@ -68,7 +88,7 @@ async function addStaff(data) {
 // 删除服务人员类型
 async function deleteStaff(_id) {
   try {
-    const record = await staffServiceInstance.updateById(staffModel, _id, {isDelete: true});
+    const record = await staffServiceInstance.updateById(staffModel, _id, { isDelete: true });
     // debug(record)
     return record;
   } catch (ex) {

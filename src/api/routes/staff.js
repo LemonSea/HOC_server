@@ -19,7 +19,7 @@ module.exports = (app) => {
     async (req, res, next) => {
       try {
         // debug(req.query)
-        const item = _.pick(req.query, ['pageNum', 'pageSize']);
+        const item = _.pick(req.query, ['pageNum', 'pageSize', 'user']);
         const result = await staffController.findList(item);
         res.status(200).json(
           {
@@ -37,7 +37,7 @@ module.exports = (app) => {
     async (req, res, next) => {
       try {
         // debug(req.query)
-        const item = _.pick(req.query, ['pageNum', 'pageSize', 'searchType', 'searchName']);
+        const item = _.pick(req.query, ['pageNum', 'pageSize', 'searchType', 'searchName', 'user']);
         const result = await staffController.findList(item);
         res.status(200).json(
           {

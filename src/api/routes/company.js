@@ -46,6 +46,7 @@ module.exports = (app) => {
       }
     })
 
+  // 添加公司
   route.post('/',
     async (req, res, next) => {
       try {
@@ -65,5 +66,46 @@ module.exports = (app) => {
       }
     }
   )
+
+  // 修改账号状态
+  route.put('/admin/status',
+    // isAuth,
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.body, ['_id', 'status']);
+        // debug(item)
+        const result = await companyController.updateStatus(item._id, item.status);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    }
+  )
+
+  // 根据用户获得公司
+  route.get('/getOfficer',
+    isAuth,
+    async (req, res, next) => {
+      try {
+        // debug(req.query)
+        const item = _.pick(req.query, ['_id']);
+        // debug(item)
+        const result = await companyController.getOfficer(item);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result[0]
+          }
+        );
+      } catch (e) {
+        throw e;
+      }
+    })
 
 }

@@ -27,6 +27,10 @@ const staffSchema = new mongoose.Schema({
     type: String
   },
   avatar: {
+    type: String,
+    default: 'imgs/default/avatar/1585969641412.png'
+  },
+  avatar: {
     type: String
   },
   imgs: {
@@ -45,16 +49,20 @@ const staffSchema = new mongoose.Schema({
     type: String
   },
   star: {
-    type: Number
+    type: Number,
+    default: 0
   },
   orderCount: {
-    type: Number
+    type: Number,
+    default: 0
   },
   highPraiseOrder: {
-    type: Number
+    type: Number,
+    default: 0
   },
   badReviewOrder: {
-    type: Number
+    type: Number,
+    default: 0
   },
   introduction: {
     type: String
