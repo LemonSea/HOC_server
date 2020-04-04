@@ -6,24 +6,30 @@ const companySchema = new mongoose.Schema({
   name: {
     type: String
   },
-  // Officer: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'user'
-  // },
+  Officer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
+  },
   describe: {
     type: String
   },
   address: {
     type: String
   },
-  phone1: {
+  imgs: {
     type: Array
+  },
+  phone1: {
+    type: Object
   },
   phone2: {
-    type: Array
+    type: Object
   },
   phone3: {
-    type: Array
+    type: Object
+  },
+  email: {
+    type: String
   },
   staffCount: {
     type: Number,
@@ -35,10 +41,6 @@ const companySchema = new mongoose.Schema({
   status: {
     type: Number,
     default:0
-  },
-  auditRecord: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'companyAuditRecord'
   },
   createTime: {
     type: Date,

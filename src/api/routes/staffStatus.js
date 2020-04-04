@@ -32,7 +32,7 @@ module.exports = (app) => {
     })
 
   route.get('/type',
-    isAuth,
+    // isAuth,
     async (req, res, next) => {
       try {
         const result = await staffStatusController.getStaffType();

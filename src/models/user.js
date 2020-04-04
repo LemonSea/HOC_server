@@ -19,6 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
+    default: '/imgs/default/avatar/1585609047225.png'
   },
   nickname: {
     type: String,
@@ -46,10 +47,10 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: Object
   },
-  company: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'company'
-  },
+  // company: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'company'
+  // },
   role: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'role'

@@ -15,7 +15,8 @@ const companyAuditRecordSchema = new mongoose.Schema({
     default:0
   },
   remark: {
-    type: String
+    type: String,
+    default: null
   },
   createTime: {
     type: Date,

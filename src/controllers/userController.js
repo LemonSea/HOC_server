@@ -15,7 +15,7 @@ async function getMe(id) {
   return user;
 }
 
-// 获取用户列表
+// 获取所有用户列表
 async function findList(item) {
   try {
     const pageSize = parseInt(item.pageSize);
@@ -113,12 +113,47 @@ async function deleteById(_id) {
   }
 }
 
+
+// 添加公司负责人
+async function addHead(user) {
+  try {
+    // let result = await userServer.findUser(user);
+    let result = await userServiceInstance.validationAccount(user);
+    if (result) return false;
+
+    // 密码加密
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+
+    const record = await userServiceInstance.createOne(userModel, user);
+    // const token =  record.generateAuthToken();
+    // debug(record)
+    return record;
+    // return user = {
+    //   record: _.pick(record, ['_id', 'account', '']),
+    //   // token: token
+    // };
+  } catch (ex) {
+    throw ex
+  }
+}
+
+
+
 module.exports = {
   getMe,
+  /**
+   * crud
+   */
   findList,
   adminLogin,
   addAdmin,
   updateStatus,
   updateRole,
   deleteById,
+  /**
+   * client
+   */
+  addHead,
+  findOfficerList
 }

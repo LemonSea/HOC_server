@@ -15,12 +15,17 @@ module.exports = (app) => {
   app.use('/users', route);
 
   // 获取当前账号信息
-  route.get('/me', isAuth,
+  route.get('/me',
+    // isAuth,
     async (req, res, next) => {
       const record = await userController.getMe(req.currentUser.id);
       res.status(200).send(record)
     }
   )
+
+  /**
+   * crud
+   */
 
   // 管理员登录
   route.post('/admin/login',
@@ -36,6 +41,7 @@ module.exports = (app) => {
           })
 
         const result = await userController.adminLogin(user);
+        debug(result)
         if (!result) return res.status(400).json({
           "status": 1,
           "msg": 'Invalid account or password!'
@@ -170,6 +176,37 @@ module.exports = (app) => {
         next(e)
       }
     })
+
+  /**
+   * client
+   */
+
+  // 添加公司负责人
+  route.post('/head',
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.body, ['data']);
+        const result = await userController.addHead(item.data);
+        // debug(item)
+        if (!result) return res.status(400).json(
+          {
+            "status": 1,
+            "msg": 'User already registered.'
+          })
+
+        res.status(201).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    }
+  )
+
 
 }
 

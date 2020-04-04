@@ -10,6 +10,9 @@ const staffStatus = require('./routes/staffStatus');
 const staff = require('./routes/staff');
 const role = require('./routes/role');
 
+const company = require('./routes/company');
+const companyAuditRecord = require('./routes/companyAuditRecord');
+
 module.exports = () => {
   const app = Router();
 
@@ -18,10 +21,12 @@ module.exports = () => {
   course(app);
   user(app);
   auth(app);
+  role(app);
   authorities(app);
   staffStatus(app);
   staff(app);
-  role(app);
+  company(app);
+  companyAuditRecord(app);
 
   return app
 }

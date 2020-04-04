@@ -14,8 +14,11 @@ module.exports = (app) => {
 
   app.use('/role', route);
 
+  /**
+   * crud
+   */
   route.get('/admin/list',
-    // isAuth,
+    isAuth,
     async (req, res, next) => {
       try {
         const result = await roleController.findList();
@@ -31,7 +34,7 @@ module.exports = (app) => {
     })
 
   route.post('/admin',
-    // isAuth,
+    isAuth,
     async (req, res, next) => {
       try {
         const item = _.pick(req.body, ['data']);
@@ -50,7 +53,7 @@ module.exports = (app) => {
     })
 
     route.put('/auth',
-    // isAuth,
+    isAuth,
     async (req, res, next) => {
       try {
         const item = _.pick(req.body, ['_id', 'menu']);
@@ -89,4 +92,21 @@ module.exports = (app) => {
     }
   })
 
+  /**
+   * client
+   */
+  route.get('/list',
+  async (req, res, next) => {
+    try {
+      const result = await roleController.findList();
+      res.status(200).json(
+        {
+          "status": 0,
+          "data": result
+        }
+      );
+    } catch (e) {
+      throw e;
+    }
+  })
 }
