@@ -181,6 +181,7 @@ module.exports = (app) => {
    * client
    */
 
+  // 公司注册
   // 添加公司负责人
   route.post('/head',
     async (req, res, next) => {
@@ -207,6 +208,80 @@ module.exports = (app) => {
     }
   )
 
+  // 用户登录
+  route.post('/login',
+    async (req, res, next) => {
+      try {
+        const user = _.pick(req.body, ['account', 'password']);
+
+        const { error } = userValidate.adminLoginValidate(user);
+        if (error) return res.status(400).json(
+          {
+            "status": 1,
+            "msg": error.details[0].message
+          })
+
+        const result = await userController.userLogin(user);
+        debug(result)
+        if (!result) return res.status(400).json({
+          "status": 1,
+          "msg": 'Invalid account or password!'
+        })
+
+        const { record, token } = result;
+        res.status(200).header('x-auth-token', token).json(
+          {
+            "status": 0,
+            "data": record,
+            "token": token
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    }
+  )
+
+
+  // 用户注册
+  route.post('/register',
+    async (req, res, next) => {
+      try {
+        const user = req.body;
+        // const user = _.pick(req.body, ['data']);
+        // debug(user)
+
+        // const { error } = userValidate.addAdminValidate(user);
+        // if (error) return res.status(400).json(
+        //   {
+        //     "status": 1,
+        //     "msg": error.details[0].message
+        //   }
+        // )
+
+        const result = await userController.userRegister(user);
+        if (!result) return res.status(400).json(
+          {
+            "status": 1,
+            "msg": 'User already registered.'
+          })
+
+          const { record, token } = result;
+          // debug(record)
+          res.status(201).header('x-auth-token', token).json(
+            {
+              "status": 0,
+              "data": record,
+              "token": token
+            }
+          )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    }
+  )
 
 }
 

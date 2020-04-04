@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
   },
   nickname: {
     type: String,
-    default:"新用户" + randomNumBySix()
+    default: "新用户" + randomNumBySix()
   },
   realName: {
     type: String
@@ -32,14 +32,16 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   gender: {
-    type: Number
+    type: Number,
+    default: 0
   },
   birthday: {
-    type: Date
+    type: Date,
+    default: null
   },
-  createTime: { 
-    type: Date, 
-    default: Date.now 
+  createTime: {
+    type: Date,
+    default: Date.now
   },
   email: {
     type: String

@@ -113,6 +113,9 @@ async function deleteById(_id) {
   }
 }
 
+/**
+ * client
+ */
 
 // 添加公司负责人
 async function addHead(user) {
@@ -137,7 +140,50 @@ async function addHead(user) {
     throw ex
   }
 }
+// 用户登录
+async function userLogin(user) {
+  try {
+    let record = await userServiceInstance.validationAccount(user);
+    if (!record) return false;
 
+    const validPassword = await bcrypt.compare(user.password, record.password);
+    if (!validPassword) {
+      return false;
+    }
+
+    const token =  record.generateAuthToken();
+    return user = {
+      record,
+      // record: _.pick(record, ['_id', 'account', 'isAdmin']),
+      token: token
+    };
+  } catch (ex) {
+    throw ex
+  }
+}
+
+// 用户注册
+async function userRegister(user) {
+  try {
+    // let result = await userServer.findUser(user);
+    let result = await userServiceInstance.validationAccount(user);
+    if (result) return false;
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+
+    const record = await userServiceInstance.createOne(userModel, user);
+    // debug(record)
+    const token =  record.generateAuthToken();
+    return user = {
+      record,
+      // record: _.pick(record, ['_id', 'account', 'isAdmin']),
+      token: token
+    };
+  } catch (ex) {
+    throw ex
+  }
+}
 
 
 module.exports = {
@@ -154,5 +200,7 @@ module.exports = {
   /**
    * client
    */
-  addHead
+  addHead,
+  userLogin,
+  userRegister
 }
