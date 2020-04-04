@@ -25,6 +25,23 @@ class staffServer extends commonServer {
     };
   }
 
+  
+  async recommendList(rest, limit) {
+    const list = await staffModel
+      .find(rest)
+      // .populate('company', 'name')
+        .populate('staffStatus', 'name')
+        .populate('company', 'name')
+      .limit(limit).exec()
+    // debug(num)
+    // debug(limit)
+    debug(list)
+    return {
+      limit,
+      list
+    };
+  }
+
 }
 
 

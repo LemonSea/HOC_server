@@ -6,6 +6,7 @@ class companyServer extends commonServer {
   constructor() {
     super();
   }
+
   async findList(rest, pageSize, pageNum) {
     const num = await companyModel.find(rest).count();
     const list = await companyModel
@@ -24,6 +25,22 @@ class companyServer extends commonServer {
       list
     };
   }
+  
+  async recommendList(rest, limit) {
+    const list = await companyModel
+      .find(rest)
+      // .populate('company', 'name')
+      .populate('Officer')
+      .limit(limit).exec()
+    // debug(num)
+    // debug(limit)
+    // debug(list)
+    return {
+      limit,
+      list
+    };
+  }
+
 }
 
 module.exports = companyServer;

@@ -1,4 +1,4 @@
-const debug = require('debug')('app:controller');
+const debug = require('debug')('app:controller-staffStatus');
 const { Container } = require("typedi");
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
@@ -22,7 +22,7 @@ async function findList() {
 async function getStaffType() {
   try {
     const result = await staffStatusServiceInstance.getStaffType({ isDelete: false });
-    debug(result)
+    // debug(result)
     return result;
   } catch (ex) {
     throw ex

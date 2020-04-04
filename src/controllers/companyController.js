@@ -80,9 +80,22 @@ async function getOfficer(item) {
   }
 }
 
+// 获取推荐公司
+async function findRecommend(item) {
+  try {
+    const rest = { isDelete: false}
+    const limit = parseInt(item)
+    const result = await companyServiceInstance.recommendList(rest, limit);
+    return result;
+  } catch (ex) {
+    throw ex
+  }
+}
+
 module.exports = {
   addCompany,
   findOfficerList,
   updateStatus,
-  getOfficer
+  getOfficer,
+  findRecommend
 }

@@ -108,4 +108,24 @@ module.exports = (app) => {
       }
     })
 
+  // 获取推荐公司
+  route.get('/recommend',
+  async (req, res, next) => {
+    try {
+      const item = _.pick(req.query, ['limit']);
+      // const item = req.query;
+      debug(item)
+      // const result = await companyController.findOfficerList(item);
+      const result = await companyController.findRecommend(item.limit);
+      res.status(200).json(
+        {
+          "status": 0,
+          "data": result
+        }
+      );
+    } catch (e) {
+      throw e;
+    }
+  })
+
 }

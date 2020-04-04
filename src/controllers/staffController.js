@@ -95,10 +95,24 @@ async function deleteStaff(_id) {
     throw ex
   }
 }
+
+// 获取推荐员工
+async function findRecommend(item) {
+  try {
+    const rest = { isDelete: false}
+    const limit = parseInt(item)
+    const result = await staffServiceInstance.recommendList(rest, limit);
+    return result;
+  } catch (ex) {
+    throw ex
+  }
+}
+
 module.exports = {
   findList,
   addStaff,
   updateStatus,
   updateStaff,
-  deleteStaff
+  deleteStaff,
+  findRecommend
 }
