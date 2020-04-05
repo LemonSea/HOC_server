@@ -8,15 +8,23 @@ class OrderServer extends commonServer {
     super();
   }
   
-  // async findList(rest) {
-  //   const result = await RoleModel
-  //       .find(rest)
-  //       .populate('creator', 'account nickname')
-  //   // debug(result)
-  //   return result;
-  //   if (result) return false;
-  //   return true;
-  // }
+  async findList(rest, pageSize, pageNum) {
+    const num = await OrderModel.find(rest).count();
+    const list = await OrderModel
+        .find(rest)
+        .populate('employee')
+        .populate('user')
+        .populate('company')
+        .skip((pageNum-1)*pageSize)
+        .limit(pageSize).exec()
+    debug(rest)
+    return {
+      num,
+      pageSize,
+      pageNum,
+      list
+    };
+  }
 
 }
 

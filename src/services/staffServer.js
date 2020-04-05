@@ -13,8 +13,8 @@ class staffServer extends commonServer {
     const num = await Staff.find(rest).count();
     const list = await Staff
         .find(rest)
-        .populate('staffStatus', 'name')
-        // .populate('staffStatus', 'name')
+        .populate('user')
+        .populate('employee')
         .populate('company')
         .skip((pageNum-1)*pageSize)
         .limit(pageSize).exec()

@@ -34,7 +34,8 @@ const orderSchema = new mongoose.Schema({
     type: String
   },
   countTime: {
-    type: String
+    type: Object,
+    default: null
   },
   status: {
     type: Number,

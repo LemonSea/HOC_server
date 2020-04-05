@@ -96,10 +96,10 @@ module.exports = (app) => {
       const item = _.pick(req.body, ['_id', 'status']);
       // debug(item)
       const result = await staffController.updateStatus(item._id, item.status);
-      res.status(201).json(
+      res.status(200).json(
         {
           "status": 0,
-          "data": item
+          "data": result
         }
       )
     } catch (e) {

@@ -34,4 +34,66 @@ module.exports = (app) => {
       }
     })
 
+  // 获取订单
+  route.get('/admin/list',
+    // isAuth,
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.query, ['pageNum', 'pageSize', 'user']);
+        debug(item)
+        const result = await orderController.findList(item);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        );
+      } catch (e) {
+        throw e;
+      }
+    })
+
+  route.put('/admin/orderStatus',
+    // isAuth,
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.body, ['_id', 'status']);
+        debug(item)
+        const result = await orderController.updateStatus(item._id, item.status);
+        debug(result)
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    }
+  )
+
+  /**
+   * client
+   */
+  // 获取订单
+  route.get('/user/list',
+    // isAuth,
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.query, ['pageNum', 'pageSize', 'user']);
+        debug(item)
+        const result = await orderController.findListUser(item);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        );
+      } catch (e) {
+        throw e;
+      }
+    })
+
 }
