@@ -1,5 +1,5 @@
 const route = require('express').Router();
-const debug = require('debug')('app:route-role');
+const debug = require('debug')('app:route-order');
 const _ = require('lodash');
 const logger = require('../../middlewares/logger');
 
@@ -15,10 +15,11 @@ module.exports = (app) => {
   app.use('/order', route);
 
   route.post('/add',
-    isAuth,
+    // isAuth,
     async (req, res, next) => {
       try {
         const item = _.pick(req.body, ['data']);
+        debug(item)
         const result = await orderController.addOrder(item.data);
         debug(req.body)
         res.status(201).json(

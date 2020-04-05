@@ -1,4 +1,4 @@
-const debug = require('debug')('app:controller-role');
+const debug = require('debug')('app:controller-order');
 const { Container } = require("typedi");
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
