@@ -13,6 +13,8 @@ const role = require('./routes/role');
 const company = require('./routes/company');
 const companyAuditRecord = require('./routes/companyAuditRecord');
 
+const order = require('./routes/order');
+
 module.exports = () => {
   const app = Router();
 
@@ -27,6 +29,7 @@ module.exports = () => {
   staff(app);
   company(app);
   companyAuditRecord(app);
+  order(app);
 
   return app
 }
