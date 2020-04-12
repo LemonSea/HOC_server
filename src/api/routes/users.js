@@ -283,6 +283,61 @@ module.exports = (app) => {
     }
   )
 
+  // 修改账号信息
+  route.put('/info',
+    // isAuth,
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.body, ['_id', 'data']);
+        // debug(item)
+        const result = await userController.updateInfo(item._id, item.data);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    }
+  )
+
+  // 修改账号密码
+  route.put('/account',
+    // isAuth,
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.body, ['_id', 'data']);
+        // debug(item)
+        const result = await userController.updatePassword(item._id, item.data);
+        debug(result)
+        if (result === 1) return res.status(200).json(
+          {
+            "status": 1,
+            "msg": '密码错误！'
+          })
+
+        if (result === -1) return res.status(200).json(
+          {
+            "status": -1,
+            "msg": '不能设置重复密码！'
+          })
+
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    }
+  )
+
 }
 
 

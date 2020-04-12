@@ -21,10 +21,10 @@ async function findList(item) {
     const pageSize = parseInt(item.pageSize);
     const pageNum = parseInt(item.pageNum);
     const rest = { isDelete: false }
-    if(item.searchName) {
-      if(item.searchType === 'name'){
+    if (item.searchName) {
+      if (item.searchType === 'name') {
         const reg = new RegExp(item.searchName, 'i') //不区分大小写
-        rest[item.searchType] = {$regex : reg}
+        rest[item.searchType] = { $regex: reg }
       }
     }
     // debug(item)
@@ -46,7 +46,7 @@ async function adminLogin(user) {
       return false;
     }
 
-    const token =  record.generateAuthToken();
+    const token = record.generateAuthToken();
     return user = {
       record,
       // record: _.pick(record, ['_id', 'account', 'isAdmin']),
@@ -82,7 +82,7 @@ async function addAdmin(user) {
 async function updateStatus(_id, status) {
   try {
     // debug(_id, status)
-    const record = await userServiceInstance.updateById(userModel, _id,  {status});
+    const record = await userServiceInstance.updateById(userModel, _id, { status });
     // debug(record)
     return record;
   } catch (ex) {
@@ -94,7 +94,7 @@ async function updateStatus(_id, status) {
 async function updateRole(_id, role) {
   try {
     debug(_id, role)
-    const record = await userServiceInstance.updateById(userModel, _id,  {role});
+    const record = await userServiceInstance.updateById(userModel, _id, { role });
     debug(record)
     return record;
   } catch (ex) {
@@ -105,7 +105,7 @@ async function updateRole(_id, role) {
 // 删除用户
 async function deleteById(_id) {
   try {
-    const record = await userServiceInstance.updateById(userModel, _id, {isDelete: true});
+    const record = await userServiceInstance.updateById(userModel, _id, { isDelete: true });
     debug(record)
     return record;
   } catch (ex) {
@@ -151,7 +151,7 @@ async function userLogin(user) {
       return false;
     }
 
-    const token =  record.generateAuthToken();
+    const token = record.generateAuthToken();
     return user = {
       record,
       // record: _.pick(record, ['_id', 'account', 'isAdmin']),
@@ -174,7 +174,7 @@ async function userRegister(user) {
 
     const record = await userServiceInstance.createOne(userModel, user);
     // debug(record)
-    const token =  record.generateAuthToken();
+    const token = record.generateAuthToken();
     return user = {
       record,
       // record: _.pick(record, ['_id', 'account', 'isAdmin']),
@@ -185,6 +185,50 @@ async function userRegister(user) {
   }
 }
 
+// 更新账号信息
+async function updateInfo(_id, data) {
+  try {
+    debug(_id, data)
+    const record = await userServiceInstance.updateById(userModel, _id, data);
+    debug(record)
+    return record;
+  } catch (ex) {
+    throw ex
+  }
+}
+
+// 更新账号密码
+async function updatePassword(_id, data) {
+  try {
+
+    debug(_id, data)
+
+    let user = await userServiceInstance.findById(userModel, _id);
+    if (!user) return false;
+
+    // debug(user)
+    const validOldPassword = await bcrypt.compare(data.oldPassword, user.password);
+    debug(validOldPassword)
+    if (!validOldPassword) {
+      return 1;
+    }
+
+    const validPassword = await bcrypt.compare(data.password, user.password);
+    debug(validPassword)
+    if (validPassword) {
+      return -1;
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    password = await bcrypt.hash(data.password, salt);
+
+    const record = await userServiceInstance.updateById(userModel, _id, {password});
+    // debug(record)
+    return record;
+  } catch (ex) {
+    throw ex
+  }
+}
 
 module.exports = {
   getMe,
@@ -202,5 +246,7 @@ module.exports = {
    */
   addHead,
   userLogin,
-  userRegister
+  userRegister,
+  updateInfo,
+  updatePassword
 }
