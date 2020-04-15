@@ -3,7 +3,7 @@ const commonServer = require('./commonServer');
 
 const userModel = require('../models/user');
 
-class userServer extends commonServer {
+class userServer extends commonServer { 
   constructor() {
     super();
   }
@@ -17,7 +17,7 @@ class userServer extends commonServer {
       .skip((pageNum - 1) * pageSize)
       .limit(pageSize).exec()
       // debug(num)
-      debug(rest)
+      // debug(rest)
       // debug(list)
     return {
       num,

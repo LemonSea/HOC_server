@@ -108,6 +108,28 @@ module.exports = (app) => {
       }
     })
 
+    /**
+     * client
+     */
+    
+  // 获取公司负责人列表
+  route.get('/client/officer',
+  async (req, res, next) => {
+    try {
+      // debug(req.query)
+      const item = _.pick(req.query, ['pageNum', 'pageSize']);
+      const result = await companyController.findOfficerList(item);
+      res.status(200).json(
+        {
+          "status": 0,
+          "data": result
+        }
+      );
+    } catch (e) {
+      throw e;
+    }
+  })
+
   // 获取推荐公司
   route.get('/recommend',
   async (req, res, next) => {

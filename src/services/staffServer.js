@@ -27,6 +27,24 @@ class staffServer extends commonServer {
     };
   }
 
+  /* client */
+  async findListClient(rest, pageSize, pageNum) {
+    const num = await Staff.find(rest).count();
+    const list = await Staff
+        .find(rest)
+        // .populate('user')
+        .populate('staffStatus')
+        .populate('company')
+        .skip((pageNum-1)*pageSize)
+        .limit(pageSize).exec()
+    // debug(list)
+    return {
+      num,
+      pageSize,
+      pageNum,
+      list
+    };
+  }
   
   async recommendList(rest, limit) {
     const list = await staffModel
@@ -37,7 +55,7 @@ class staffServer extends commonServer {
       .limit(limit).exec()
     // debug(num)
     // debug(limit)
-    debug(list)
+    // debug(list)
     return {
       limit,
       list

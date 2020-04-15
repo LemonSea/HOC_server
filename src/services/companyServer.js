@@ -16,7 +16,7 @@ class companyServer extends commonServer {
       .skip((pageNum - 1) * pageSize)
       .limit(pageSize).exec()
     // debug(num)
-    debug(rest)
+    // debug(rest)
     // debug(list)
     return {
       num,

@@ -17,7 +17,7 @@ class OrderServer extends commonServer {
         .populate('company')
         .skip((pageNum-1)*pageSize)
         .limit(pageSize).exec()
-    debug(rest)
+    // debug(rest)
     return {
       num,
       pageSize,

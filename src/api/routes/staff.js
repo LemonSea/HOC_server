@@ -1,5 +1,5 @@
 const route = require('express').Router();
-const debug = require('debug')('app:route');
+const debug = require('debug')('app:route-staff');
 const _ = require('lodash');
 const logger = require('../../middlewares/logger');
 
@@ -127,6 +127,45 @@ module.exports = (app) => {
       next(e)
     }
   })
+
+  /**
+   *  client
+   */
+      
+  route.get('/client/list',
+  async (req, res, next) => {
+    try {
+      // debug(req.query)
+      const item = _.pick(req.query, ['pageNum', 'pageSize']);
+      const result = await staffController.findStaffList(item);
+      res.status(200).json(
+        {
+          "status": 0,
+          "data": result
+        }
+      );
+    } catch (e) {
+      throw e;
+    }
+  })
+
+  route.get('/client/searchList',
+    async (req, res, next) => {
+      try {
+        // debug(req.query)
+        const item = _.pick(req.query, ['pageNum', 'pageSize', 'typeItem']);
+        debug(item)
+        const result = await staffController.findStaffList(item);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        );
+      } catch (e) {
+        throw e;
+      }
+    })
 
     // 获取推荐员工
     route.get('/recommend',

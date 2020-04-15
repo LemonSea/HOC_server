@@ -56,7 +56,7 @@ class commonServer {
           .sort(sort)
           .select(select)
           .count();
-        debug(result)
+        // debug(result)
         return result;
       }
       const result = await model

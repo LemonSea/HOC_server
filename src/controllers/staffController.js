@@ -12,7 +12,7 @@ const commonServer = require('../services/commonServer');
 const staffServiceInstance = Container.get(staffServer);
 const companyServiceInstance = Container.get(commonServer);
 
-// 获取服务人员
+// 后台获取服务人员
 async function findList(item) {
   try {
     const pageSize = parseInt(item.pageSize);
@@ -48,7 +48,6 @@ async function findList(item) {
     throw ex
   }
 }
-
 
 // 更新服务人员类型
 async function updateStatus(_id, status) {
@@ -96,6 +95,8 @@ async function deleteStaff(_id) {
   }
 }
 
+/* client */
+
 // 获取推荐员工
 async function findRecommend(item) {
   try {
@@ -108,11 +109,37 @@ async function findRecommend(item) {
   }
 }
 
+// 前台获取服务人员
+async function findStaffList(item) {
+  try {
+    const pageSize = parseInt(item.pageSize);
+    const pageNum = parseInt(item.pageNum);
+    let rest = { isDelete: false }
+    debug(rest)
+    if (item.typeItem) {
+      rest['staffStatus'] = item.typeItem
+      debug(rest)
+      // if (item.searchType === 'name') {
+      //   const reg = new RegExp(item.searchName, 'i') //不区分大小写
+      //   rest[item.searchType] = { $regex: reg }
+      // }
+    }
+
+    // debug(item)
+    const result = await staffServiceInstance.findListClient(rest, pageSize, pageNum);
+
+    return result;
+  } catch (ex) {
+    throw ex
+  }
+}
+
 module.exports = {
   findList,
   addStaff,
   updateStatus,
   updateStaff,
   deleteStaff,
-  findRecommend
+  findRecommend,
+  findStaffList
 }
