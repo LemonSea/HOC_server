@@ -13,7 +13,13 @@ const companySchema = new mongoose.Schema({
   describe: {
     type: String
   },
-  address: {
+  area: {
+    type: Array
+  },
+  areaStr: {
+    type: String
+  },
+  detailAddress: {
     type: String
   },
   imgs: {

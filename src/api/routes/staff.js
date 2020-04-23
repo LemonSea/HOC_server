@@ -55,8 +55,8 @@ module.exports = (app) => {
     async (req, res, next) => {
       try {
         const item = _.pick(req.body, ['data']);
+        // debug(item)
         const result = await staffController.addStaff(item.data);
-        debug(req.body)
         res.status(201).json(
           {
             "status": 0,

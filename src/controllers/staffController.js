@@ -24,19 +24,19 @@ async function findList(item) {
         rest[item.searchType] = { $regex: reg }
       }
     }
-    
+
     if (item.user !== '') {
-      debug(item)
+      // debug(item)
       // 获得对应用户的公司
       const firmRest = { isDelete: false, Officer: item.user }
-      debug('firmRest', firmRest)
+      // debug('firmRest', firmRest)
       const company = await companyServiceInstance.findList(companyModel, firmRest);
-      debug('company', company)
+      // debug('company', company)
       const rest = { isDelete: false, company: company[0]._id }
-      debug('rest', rest)
+      // debug('rest', rest)
       const result = await staffServiceInstance.findList(rest, pageSize, pageNum);
-  
-      debug(result)
+
+      // debug(result)
       return result;
     }
 
@@ -76,8 +76,11 @@ async function updateStaff(_id, data) {
 // 添加服务人员
 async function addStaff(data) {
   try {
-    debug(data)
     const record = await staffServiceInstance.createOne(staffModel, data);
+    if (record) {
+      const company = await companyModel.findByIdAndUpdate(data.company, { $inc: { staffCount: 1 } }, { new: true })
+      // debug(company)
+    }
     return record;
   } catch (ex) {
     throw ex
@@ -89,6 +92,10 @@ async function deleteStaff(_id) {
   try {
     const record = await staffServiceInstance.updateById(staffModel, _id, { isDelete: true });
     // debug(record)
+    if (record) {
+      const company = await companyModel.findByIdAndUpdate(record.company, { $inc: { staffCount: -1 } }, { new: true })
+      // debug(company)
+    }
     return record;
   } catch (ex) {
     throw ex
@@ -100,7 +107,7 @@ async function deleteStaff(_id) {
 // 获取推荐员工
 async function findRecommend(item) {
   try {
-    const rest = { isDelete: false}
+    const rest = { isDelete: false }
     const limit = parseInt(item)
     const result = await staffServiceInstance.recommendList(rest, limit);
     return result;
@@ -115,10 +122,10 @@ async function findStaffList(item) {
     const pageSize = parseInt(item.pageSize);
     const pageNum = parseInt(item.pageNum);
     let rest = { isDelete: false }
-    debug(rest)
+    // debug(rest)
     if (item.typeItem) {
       rest['staffStatus'] = item.typeItem
-      debug(rest)
+      // debug(rest)
       // if (item.searchType === 'name') {
       //   const reg = new RegExp(item.searchName, 'i') //不区分大小写
       //   rest[item.searchType] = { $regex: reg }

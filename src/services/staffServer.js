@@ -14,7 +14,7 @@ class staffServer extends commonServer {
     const list = await Staff
         .find(rest)
         .populate('user')
-        .populate('employee')
+        .populate('staffStatus')
         .populate('company')
         .skip((pageNum-1)*pageSize)
         .limit(pageSize).exec()

@@ -30,9 +30,6 @@ const staffSchema = new mongoose.Schema({
     type: String,
     default: 'imgs/default/avatar/1585969641412.png'
   },
-  avatar: {
-    type: String
-  },
   imgs: {
     type: Array
   },
@@ -45,22 +42,36 @@ const staffSchema = new mongoose.Schema({
   inductionTime: {
     type: String
   },
-  address: {
+  workArea: {
+    type: Array
+  },
+  workAreaStr: {
+    type: String
+  },
+  detailWorkAddress: {
     type: String
   },
   star: {
     type: Number,
     default: 0
   },
-  orderCount: {
+  oneStarOrders: {
     type: Number,
     default: 0
   },
-  highPraiseOrder: {
+  twoStarOrders: {
     type: Number,
     default: 0
   },
-  badReviewOrder: {
+  threeStarOrders: {
+    type: Number,
+    default: 0
+  },
+  fourStarOrders: {
+    type: Number,
+    default: 0
+  },
+  fiveStarOrders: {
     type: Number,
     default: 0
   },
