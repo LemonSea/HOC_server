@@ -18,6 +18,7 @@ const order = require('./routes/order');
 const userAddress = require('./routes/userAddress');
 
 const staffFavorites = require('./routes/staffFavorites');
+const companyFavorites = require('./routes/companyFavorites');
 
 module.exports = () => {
   const app = Router();
@@ -36,6 +37,7 @@ module.exports = () => {
   order(app);
   userAddress(app);
   staffFavorites(app);
+  companyFavorites(app);
 
   return app
 }

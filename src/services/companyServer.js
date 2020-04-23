@@ -41,6 +41,13 @@ class companyServer extends commonServer {
     };
   }
 
+  async findCompanyDetail(rest) {
+    const result = await companyModel
+        .find(rest)
+        .populate('Officer')
+    // debug(result)
+    return result;
+  }
 }
 
 module.exports = companyServer;

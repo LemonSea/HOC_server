@@ -108,46 +108,62 @@ module.exports = (app) => {
       }
     })
 
-    /**
-     * client
-     */
-    
+  /**
+   * client
+   */
+  route.get('/client',
+    async (req, res, next) => {
+      try {
+        // debug(req.query)
+        const item = _.pick(req.query, ['_id']);
+        const result = await companyController.findCompanyDetail(item._id);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        );
+      } catch (e) {
+        throw e;
+      }
+    })
+
   // 获取公司负责人列表
   route.get('/client/officer',
-  async (req, res, next) => {
-    try {
-      // debug(req.query)
-      const item = _.pick(req.query, ['pageNum', 'pageSize']);
-      const result = await companyController.findOfficerList(item);
-      res.status(200).json(
-        {
-          "status": 0,
-          "data": result
-        }
-      );
-    } catch (e) {
-      throw e;
-    }
-  })
+    async (req, res, next) => {
+      try {
+        // debug(req.query)
+        const item = _.pick(req.query, ['pageNum', 'pageSize']);
+        const result = await companyController.findOfficerList(item);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        );
+      } catch (e) {
+        throw e;
+      }
+    })
 
   // 获取推荐公司
   route.get('/recommend',
-  async (req, res, next) => {
-    try {
-      const item = _.pick(req.query, ['limit']);
-      // const item = req.query;
-      debug(item)
-      // const result = await companyController.findOfficerList(item);
-      const result = await companyController.findRecommend(item.limit);
-      res.status(200).json(
-        {
-          "status": 0,
-          "data": result
-        }
-      );
-    } catch (e) {
-      throw e;
-    }
-  })
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.query, ['limit']);
+        // const item = req.query;
+        debug(item)
+        // const result = await companyController.findOfficerList(item);
+        const result = await companyController.findRecommend(item.limit);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        );
+      } catch (e) {
+        throw e;
+      }
+    })
 
 }

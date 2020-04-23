@@ -92,10 +92,26 @@ async function findRecommend(item) {
   }
 }
 
+// 前台获取服务人员详情
+async function findCompanyDetail(_id) {
+  try {
+    const rest = {
+      _id,
+      isDelete: false
+    }
+    const result = await companyServiceInstance.findCompanyDetail(rest);
+
+    return result;
+  } catch (ex) {
+    throw ex
+  }
+}
+
 module.exports = {
   addCompany,
   findOfficerList,
   updateStatus,
   getOfficer,
-  findRecommend
+  findRecommend,
+  findCompanyDetail
 }
