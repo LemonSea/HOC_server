@@ -131,7 +131,23 @@ module.exports = (app) => {
   /**
    *  client
    */
-      
+  route.get('/client',
+  async (req, res, next) => {
+    try {
+      // debug(req.query)
+      const item = _.pick(req.query, ['_id']);
+      const result = await staffController.findStaffDetail(item._id);
+      res.status(200).json(
+        {
+          "status": 0,
+          "data": result
+        }
+      );
+    } catch (e) {
+      throw e;
+    }
+  })   
+
   route.get('/client/list',
   async (req, res, next) => {
     try {

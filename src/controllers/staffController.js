@@ -134,6 +134,21 @@ async function findStaffList(item) {
   }
 }
 
+// 前台获取服务人员详情
+async function findStaffDetail(_id) {
+  try {
+    const rest = {
+      _id,
+      isDelete: false
+    }
+    const result = await staffServiceInstance.findStaffDetail(rest);
+
+    return result;
+  } catch (ex) {
+    throw ex
+  }
+}
+
 module.exports = {
   findList,
   addStaff,
@@ -141,5 +156,6 @@ module.exports = {
   updateStaff,
   deleteStaff,
   findRecommend,
-  findStaffList
+  findStaffList,
+  findStaffDetail
 }

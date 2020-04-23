@@ -7,15 +7,28 @@ const userAddressSchema = new mongoose.Schema({
   name: {
     type: String
   },
-  user: {
+  creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
-  defAddress: {
+  name: {
     type: String
   },
-  address: {
+  area: {
     type: Array
+  },
+  areaStr: {
+    type: String
+  },
+  detailAddress: {
+    type: String
+  },
+  phone: {
+    type: Object
+  },
+  isDefault: {
+    type: Boolean,
+    default: false
   },
   createTime: {
     type: Date,

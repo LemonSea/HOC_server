@@ -62,6 +62,13 @@ class staffServer extends commonServer {
     };
   }
 
+  async findStaffDetail(rest) {
+    const result = await staffModel
+        .find(rest)
+        .populate('company')
+    // debug(result)
+    return result;
+  }
 }
 
 

@@ -15,6 +15,10 @@ const companyAuditRecord = require('./routes/companyAuditRecord');
 
 const order = require('./routes/order');
 
+const userAddress = require('./routes/userAddress');
+
+const staffFavorites = require('./routes/staffFavorites');
+
 module.exports = () => {
   const app = Router();
 
@@ -30,6 +34,8 @@ module.exports = () => {
   company(app);
   companyAuditRecord(app);
   order(app);
+  userAddress(app);
+  staffFavorites(app);
 
   return app
 }
