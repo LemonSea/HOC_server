@@ -14,25 +14,6 @@ module.exports = (app) => {
 
   app.use('/order', route);
 
-  route.post('/add',
-    // isAuth,
-    async (req, res, next) => {
-      try {
-        const item = _.pick(req.body, ['data']);
-        debug(item)
-        const result = await orderController.addOrder(item.data);
-        debug(req.body)
-        res.status(201).json(
-          {
-            "status": 0,
-            "data": result
-          }
-        )
-      } catch (e) {
-        logger.error('%o', e);
-        next(e)
-      }
-    })
 
   // 获取订单
   route.get('/admin/list',
@@ -54,7 +35,7 @@ module.exports = (app) => {
     })
 
   route.put('/admin/orderStatus',
-    // isAuth,
+    isAuth,
     async (req, res, next) => {
       try {
         const item = _.pick(req.body, ['_id', 'status']);
@@ -73,11 +54,50 @@ module.exports = (app) => {
       }
     }
   )
-
+  
   /**
    * client
    */
-  // 获取订单
+
+  // 增加订单
+  route.post('/add',
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.body, ['data']);
+        debug(item)
+        const result = await orderController.addOrder(item.data);
+        debug(req.body)
+        res.status(201).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    })
+
+    // 获取订单详情
+    route.get('/client',
+    async (req, res, next) => {
+      try {
+        // debug(req.query)
+        const item = _.pick(req.query, ['_id']);
+        const result = await orderController.findOrderDetail(item._id);
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        );
+      } catch (e) {
+        throw e;
+      }
+    })   
+
+  // 获取订单列表
   route.get('/user/list',
     // isAuth,
     async (req, res, next) => {
@@ -95,5 +115,25 @@ module.exports = (app) => {
         throw e;
       }
     })
+
+    route.put('/client/orderStatus',
+    async (req, res, next) => {
+      try {
+        const item = _.pick(req.body, ['_id', 'status']);
+        // debug(item)
+        const result = await orderController.updateStatus(item._id, item.status);
+        // debug(result)
+        res.status(200).json(
+          {
+            "status": 0,
+            "data": result
+          }
+        )
+      } catch (e) {
+        logger.error('%o', e);
+        next(e)
+      }
+    }
+  )
 
 }

@@ -20,6 +20,8 @@ const userAddress = require('./routes/userAddress');
 const staffFavorites = require('./routes/staffFavorites');
 const companyFavorites = require('./routes/companyFavorites');
 
+const orderComments = require('./routes/orderComments');
+
 module.exports = () => {
   const app = Router();
 
@@ -38,6 +40,7 @@ module.exports = () => {
   userAddress(app);
   staffFavorites(app);
   companyFavorites(app);
+  orderComments(app);
 
   return app
 }

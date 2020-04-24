@@ -18,8 +18,9 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'company'
   },
-  address: {
-    type: String
+  serviceAddress: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'userAddress'
   },
   phone: {
     type: Object
@@ -28,10 +29,10 @@ const orderSchema = new mongoose.Schema({
     type: Number
   },
   startTime: {
-    type: String
+    type: Date,
   },
   endTime: {
-    type: String
+    type: Date,
   },
   countTime: {
     type: Object,
@@ -42,13 +43,10 @@ const orderSchema = new mongoose.Schema({
     default: 0
   },
   note: {
-    type: String
+    type: String,
+    default: null
   },
-  createTime: {
-    type: Date,
-    default: Date.now 
-  },
-  firstTime: {
+  placeTime: {
     type: Date,
     default: Date.now 
   },
@@ -60,13 +58,21 @@ const orderSchema = new mongoose.Schema({
     type: Date,
     default:null
   },
-  satisfaction: {
-    type: Number,
-    default:5
-  },
-  evaluation: {
-    type: Number,
+  cancelTime: {
+    type: Date,
     default:null
+  },
+  // satisfaction: {
+  //   type: Number,
+  //   default:5
+  // },
+  // evaluation: {
+  //   type: Number,
+  //   default:null
+  // },
+  createTime: {
+    type: Date,
+    default: Date.now 
   },
   isDelete: {
     type: Boolean,

@@ -66,6 +66,7 @@ class staffServer extends commonServer {
     const result = await staffModel
         .find(rest)
         .populate('company')
+        .populate('staffStatus', 'name')
     // debug(result)
     return result;
   }

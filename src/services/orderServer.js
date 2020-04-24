@@ -15,6 +15,7 @@ class OrderServer extends commonServer {
         .populate('employee')
         .populate('user')
         .populate('company')
+        .populate('serviceAddress')
         .skip((pageNum-1)*pageSize)
         .limit(pageSize).exec()
     // debug(rest)
@@ -24,6 +25,17 @@ class OrderServer extends commonServer {
       pageNum,
       list
     };
+  }
+
+  async findOrderDetail(rest) {
+    const result = await OrderModel
+        .find(rest)
+        .populate('employee')
+        .populate('user')
+        .populate('company')
+        .populate('serviceAddress')
+    // debug(result)
+    return result;
   }
 
 }

@@ -24,7 +24,7 @@ async function findList(item) {
         rest[item.searchType] = { $regex: reg }
       }
     }
-
+    
     if (item.user !== '') {
       // debug(item)
       // 获得对应用户的公司
@@ -32,11 +32,12 @@ async function findList(item) {
       // debug('firmRest', firmRest)
       const company = await companyServiceInstance.findList(companyModel, firmRest);
       // debug('company', company)
-      const rest = { isDelete: false, company: company[0]._id }
-      // debug('rest', rest)
+        rest['company'] = company[0]._id
+      // const rest = { isDelete: false, company: company[0]._id }
+      debug('rest', rest)
       const result = await staffServiceInstance.findList(rest, pageSize, pageNum);
-
-      // debug(result)
+      
+      debug(result)
       return result;
     }
 

@@ -32,12 +32,12 @@ async function findList(item) {
       // 获得对应用户的公司
       const firmRest = { isDelete: false, Officer: item.user }
       // debug('firmRest', firmRest)
-      const company = await companyServiceInstance.findList(companyModel, firmRest);
-      // debug('company', company)
+      const company = await companyServiceInstance.findCompanyDetail(companyModel, firmRest);
+      debug('company', company)
       const rest = { isDelete: false, company: company[0]._id }
       // debug('rest', rest)
-      const result = await staffServiceInstance.findList(rest, pageSize, pageNum);
-  
+      const result = await orderServerInstance.findList(rest, pageSize, pageNum);
+
       // debug(result)
       return result;
     }
@@ -56,6 +56,8 @@ async function findList(item) {
 async function addOrder(data) {
   try {
     debug(data)
+    data.startTime = new Date(data.startTime)
+    data.endTime = new Date(data.endTime)
     const record = await orderServerInstance.createOne(orderModel, data);
     return record;
   } catch (ex) {
@@ -67,7 +69,15 @@ async function addOrder(data) {
 async function updateStatus(_id, status) {
   try {
     // debug(_id, status)
-    const record = await orderServerInstance.updateById(orderModel, _id, { status });
+    let rest = status
+    if (status === 1) {
+      rest.payTime = new Date()
+    } else if (status === 2) {
+      rest.completionTime = new Date()
+    } else if (status === -1) {
+      rest.cancelTime = new Date()
+    }
+    const record = await orderServerInstance.updateById(orderModel, _id, { status, editTime });
     // debug(record)
     return record;
   } catch (ex) {
@@ -75,8 +85,22 @@ async function updateStatus(_id, status) {
   }
 }
 
+// 前台获取订单详情
+async function findOrderDetail(_id) {
+  try {
+    const rest = {
+      _id,
+      isDelete: false
+    }
+    const result = await orderServerInstance.findOrderDetail(rest);
 
-// 用户获取订单
+    return result;
+  } catch (ex) {
+    throw ex
+  }
+}
+
+// 用户获取订单列表
 async function findListUser(item) {
   try {
     const pageSize = parseInt(item.pageSize);
@@ -96,5 +120,6 @@ module.exports = {
   addOrder,
   findList,
   updateStatus,
+  findOrderDetail,
   findListUser
 }

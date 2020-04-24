@@ -7,6 +7,7 @@ class companyServer extends commonServer {
     super();
   }
 
+  // 分页获取公司列表
   async findList(rest, pageSize, pageNum) {
     const num = await companyModel.find(rest).count();
     const list = await companyModel
@@ -41,6 +42,7 @@ class companyServer extends commonServer {
     };
   }
 
+  // 获取公司详情
   async findCompanyDetail(rest) {
     const result = await companyModel
         .find(rest)
