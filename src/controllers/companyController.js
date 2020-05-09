@@ -40,11 +40,19 @@ async function findOfficerList(item) {
 }
 
 // 获取公司负责人列表
-async function findOfficer(_id) {
+async function findClientOfficer(item) {
   try {
-    const rest = { isDelete: false, Officer: _id }
+    const pageSize = parseInt(item.pageSize);
+    const pageNum = parseInt(item.pageNum);
+    const rest = { isDelete: false, status: 1 }
+    if (item.searchName) {
+      if (item.searchType === 'name') {
+        const reg = new RegExp(item.searchName, 'i') //不区分大小写
+        rest[item.searchType] = { $regex: reg }
+      }
+    }
     // debug(item)
-    const result = await companyServiceInstance.findList(rest);
+    const result = await companyServiceInstance.findList(rest, pageSize, pageNum);
     // debug(result)
     return result;
   } catch (ex) {
@@ -83,7 +91,7 @@ async function getOfficer(item) {
 // 获取推荐公司
 async function findRecommend(item) {
   try {
-    const rest = { isDelete: false}
+    const rest = { isDelete: false, status: 1}
     const limit = parseInt(item)
     const result = await companyServiceInstance.recommendList(rest, limit);
     return result;
@@ -113,5 +121,6 @@ module.exports = {
   updateStatus,
   getOfficer,
   findRecommend,
-  findCompanyDetail
+  findCompanyDetail,
+  findClientOfficer
 }

@@ -9,6 +9,7 @@ class companyServer extends commonServer {
 
   // 分页获取公司列表
   async findList(rest, pageSize, pageNum) {
+    debug('rest', rest)
     const num = await companyModel.find(rest).count();
     const list = await companyModel
       .find(rest)
@@ -17,8 +18,6 @@ class companyServer extends commonServer {
       .skip((pageNum - 1) * pageSize)
       .limit(pageSize).exec()
     // debug(num)
-    // debug(rest)
-    // debug(list)
     return {
       num,
       pageSize,

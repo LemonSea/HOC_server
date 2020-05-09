@@ -143,7 +143,7 @@ async function addHead(user) {
 // 用户登录
 async function userLogin(user) {
   try {
-    let record = await userServiceInstance.validationAccount(user);
+    let record = await userServiceInstance.validationAccountClient(user);
     if (!record) return false;
 
     const validPassword = await bcrypt.compare(user.password, record.password);

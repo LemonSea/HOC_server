@@ -6,11 +6,11 @@ const _ = require('lodash');
 const staffModel = require('../models/staff');
 const companyModel = require('../models/company');
 const staffServer = require('../services/staffServer');
-const commonServer = require('../services/commonServer');
+const companyServer = require('../services/companyServer');
 
 // dependence injected
 const staffServiceInstance = Container.get(staffServer);
-const companyServiceInstance = Container.get(commonServer);
+const companyServiceInstance = Container.get(companyServer);
 
 // 后台获取服务人员
 async function findList(item) {
@@ -30,11 +30,11 @@ async function findList(item) {
       // 获得对应用户的公司
       const firmRest = { isDelete: false, Officer: item.user }
       // debug('firmRest', firmRest)
-      const company = await companyServiceInstance.findList(companyModel, firmRest);
+      const company = await companyServiceInstance.findList(firmRest);
       // debug('company', company)
-        rest['company'] = company[0]._id
+        rest['company'] = company.list[0]._id
       // const rest = { isDelete: false, company: company[0]._id }
-      debug('rest', rest)
+      // debug('rest', rest)
       const result = await staffServiceInstance.findList(rest, pageSize, pageNum);
       
       debug(result)
@@ -108,7 +108,7 @@ async function deleteStaff(_id) {
 // 获取推荐员工
 async function findRecommend(item) {
   try {
-    const rest = { isDelete: false }
+    const rest = { isDelete: false, status:1 }
     const limit = parseInt(item)
     const result = await staffServiceInstance.recommendList(rest, limit);
     return result;
@@ -122,7 +122,7 @@ async function findStaffList(item) {
   try {
     const pageSize = parseInt(item.pageSize);
     const pageNum = parseInt(item.pageNum);
-    let rest = { isDelete: false }
+    let rest = { isDelete: false, status: 1 }
     // debug(rest)
     if (item.typeItem) {
       rest['staffStatus'] = item.typeItem

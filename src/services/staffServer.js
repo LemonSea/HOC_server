@@ -1,4 +1,4 @@
-const debug = require('debug')('app:server');
+const debug = require('debug')('app:server-staff');
 const staffModel = require('../models/staff');
 const commonServer = require('./commonServer');
 
@@ -18,7 +18,9 @@ class staffServer extends commonServer {
         .populate('company')
         .skip((pageNum-1)*pageSize)
         .limit(pageSize).exec()
-    // debug(list)
+
+    debug(rest)
+    debug(list)
     return {
       num,
       pageSize,

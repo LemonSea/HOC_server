@@ -134,7 +134,8 @@ module.exports = (app) => {
       try {
         // debug(req.query)
         const item = _.pick(req.query, ['pageNum', 'pageSize']);
-        const result = await companyController.findOfficerList(item);
+        // const result = await companyController.findOfficerList(item);
+        const result = await companyController.findClientOfficer(item);
         res.status(200).json(
           {
             "status": 0,

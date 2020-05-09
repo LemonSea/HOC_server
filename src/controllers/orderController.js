@@ -32,15 +32,30 @@ async function findList(item) {
       // 获得对应用户的公司
       const firmRest = { isDelete: false, Officer: item.user }
       // debug('firmRest', firmRest)
-      const company = await companyServiceInstance.findCompanyDetail(companyModel, firmRest);
+      const company = await companyServiceInstance.findList(firmRest);
       debug('company', company)
-      const rest = { isDelete: false, company: company[0]._id }
+      const rest = { isDelete: false, company: company.list[0]._id }
       // debug('rest', rest)
       const result = await orderServerInstance.findList(rest, pageSize, pageNum);
 
       // debug(result)
       return result;
     }
+    // if (item.user !== '') {
+    //   // debug(item)
+    //   // 获得对应用户的公司
+    //   const firmRest = { isDelete: false, Officer: item.user }
+    //   // debug('firmRest', firmRest)
+    //   const company = await companyServiceInstance.findList(firmRest);
+    //   // debug('company', company)
+    //     rest['company'] = company.list[0]._id
+    //   // const rest = { isDelete: false, company: company[0]._id }
+    //   // debug('rest', rest)
+    //   const result = await staffServiceInstance.findList(rest, pageSize, pageNum);
+      
+    //   debug(result)
+    //   return result;
+    // }
 
     // debug(rest)
     const result = await orderServerInstance.findList(rest, pageSize, pageNum);
@@ -69,7 +84,7 @@ async function addOrder(data) {
 async function updateStatus(_id, status) {
   try {
     // debug(_id, status)
-    let rest = status
+    let rest = { status }
     if (status === 1) {
       rest.payTime = new Date()
     } else if (status === 2) {
@@ -77,7 +92,8 @@ async function updateStatus(_id, status) {
     } else if (status === -1) {
       rest.cancelTime = new Date()
     }
-    const record = await orderServerInstance.updateById(orderModel, _id, { status, editTime });
+    debug(rest)
+    const record = await orderServerInstance.updateById(orderModel, _id, rest);
     // debug(record)
     return record;
   } catch (ex) {

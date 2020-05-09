@@ -40,6 +40,13 @@ class userServer extends commonServer {
     return false;
   }
 
+  async validationAccountClient(user) {
+    // debug(user)
+    const result = await userModel.findOne({ account: user.account, isDelete:false, status:1 })
+    if (result) return result;
+    return false;
+  }
+
   async validationAdmin(user) {
     // debug(user)
     const result = await userModel
